@@ -48,8 +48,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="mt-24 border-t border-cv-line">
           <div className="container-page flex flex-col gap-3 py-10 text-sm text-cv-text-50 sm:flex-row sm:items-center sm:justify-between">
             <p>BAC STE Tutor — independent revision tool for 2BAC STE students.</p>
-            <p>
-              Built to be useful, not to replace your teacher or the official syllabus.
+            <p className="flex gap-4">
+              <a href="/privacy/" className="hover:text-cv-text">
+                Privacy
+              </a>
+              <span>Built to be useful, not to replace your teacher.</span>
             </p>
           </div>
         </footer>
