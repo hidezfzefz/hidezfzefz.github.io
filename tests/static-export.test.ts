@@ -9,6 +9,7 @@ describe.skipIf(!hasBuild)("static export", () => {
   const routes: [string, string][] = [
     ["index.html", "Pass the 2BAC STE"],
     ["practice/index.html", "Practice, one question at a time."],
+    ["exam/index.html", "Exam simulation."],
     ["tutor/index.html", "Ask the revision tutor."],
     ["progress/index.html", "Your progress."],
     ["pricing/index.html", "Simple pricing."],
@@ -30,8 +31,21 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships a sitemap with every public route", () => {
     const map = readFileSync(join(out, "sitemap.xml"), "utf8");
-    for (const path of ["/practice/", "/tutor/", "/progress/", "/pricing/"]) {
+    for (const path of ["/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/"]) {
       expect(map).toContain(`https://bacste-tutor.netlify.app${path}`);
     }
+  });
+
+  it("ships a web app manifest with both icons", () => {
+    const manifest = readFileSync(join(out, "manifest.webmanifest"), "utf8");
+    expect(manifest).toContain("/icons/icon-192.png");
+    expect(manifest).toContain("/icons/icon-512.png");
+    expect(manifest).toContain("\"display\":\"standalone\"");
+  });
+
+  it("ships the service worker and its shell", () => {
+    const sw = readFileSync(join(out, "sw.js"), "utf8");
+    expect(sw).toContain("bacste-v1");
+    expect(sw).toContain("/exam/");
   });
 });

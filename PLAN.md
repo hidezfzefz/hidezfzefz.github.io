@@ -12,6 +12,8 @@ Goal: ship a live, monetizable revision app in small vertical slices. Each miles
 - [x] Practice page: subject/topic, MCQ, instant feedback + explanation.
 - [x] Progress stored locally. Verified: reload keeps progress.
 - [x] Tutor search over the revision bank.
+- [x] Timed exam simulation (10 questions, 15 minutes, review) with best score on Progress.
+- [x] Installable PWA: manifest, icons, service worker and offline shell.
 
 ## Milestone 2 — Accounts and data ⏸ deferred to v2
 - [ ] Postgres + Drizzle schema (users, attempts, subscriptions).

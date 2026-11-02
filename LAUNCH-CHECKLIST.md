@@ -12,6 +12,7 @@ Host: Netlify site `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`)
 | Live deploy smoke-tested | **Done** | 6 routes HTTP 200, 0 console errors (Convio browser) |
 | Headers set | **Done** | CSP, HSTS, `nosniff`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy` |
 | Custom 404 | **Done** | `/this-does-not-exist/` returns 404 with the app shell |
+| Installable PWA | **Done** | `/manifest.webmanifest`, icons 192/512, service worker at `/sw.js` |
 | Secrets on host, not in client | **Done** | No secrets in the app; only public `NEXT_PUBLIC_STRIPE_PAYMENT_LINK` |
 | Database migrations / backups | **N/A** | No database in v1 |
 | Rollback path | **Done** | Netlify keeps every deploy; README documents republishing |

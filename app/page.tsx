@@ -55,6 +55,21 @@ export default function HomePage() {
       </section>
 
       <section className="container-page py-10">
+        <div className="card flex flex-col items-start justify-between gap-5 p-6 sm:flex-row sm:items-center sm:p-8">
+          <div>
+            <h2 className="text-2xl tracking-[-0.02em]">Ready for a timed run?</h2>
+            <p className="mt-1 max-w-lg text-[15px] text-cv-text-75">
+              Ten mixed questions, fifteen minutes, feedback only at the end. It shows what
+              you actually remember under pressure.
+            </p>
+          </div>
+          <Link href="/exam/" className="pill pill-primary shrink-0">
+            Start exam
+          </Link>
+        </div>
+      </section>
+
+      <section className="container-page py-10">
         <div className="card overflow-hidden">
           <div className="grid divide-y divide-cv-line md:grid-cols-3 md:divide-x md:divide-y-0">
             {[

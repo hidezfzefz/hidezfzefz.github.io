@@ -76,10 +76,43 @@ check("premium state persists", (await page.getByText("Premium active").count())
 await page.goto(`${BASE}/progress/`, { waitUntil: "networkidle" });
 check("progress shows accuracy", (await page.locator("main").innerText()).includes("accuracy"));
 
-// 6. Mobile layout has no horizontal overflow.
+// 6. Exam simulation: answer all ten, finish, and see the review.
+await page.goto(`${BASE}/exam/`, { waitUntil: "networkidle" });
+check("exam page offers a start", (await page.getByRole("button", { name: "Start exam" }).count()) === 1);
+await page.getByRole("button", { name: "Start exam" }).click();
+for (let i = 0; i < 10; i++) {
+  const options = page.locator("section button[aria-pressed]");
+  check(`exam question ${i + 1} has options`, (await options.count()) === 4);
+  await options.first().click();
+  const last = i === 9;
+  await page.getByRole("button", { name: last ? "Finish exam" : "Next question" }).click();
+}
+check(
+  "exam shows a score and a review",
+  /Exam finished/.test(await page.locator("main").innerText()) &&
+    (await page.locator("article").count()) === 10,
+);
+
+// 7. PWA: manifest is linked and the service worker registers.
+check(
+  "manifest is linked",
+  (await page.locator('link[rel="manifest"]').count()) === 1,
+);
+const manifestStatus = await page.evaluate(async () => {
+  const res = await fetch("/manifest.webmanifest");
+  return res.status;
+});
+check("manifest is served", manifestStatus === 200, `status ${manifestStatus}`);
+const registrations = await page.evaluate(async () => {
+  if (!("serviceWorker" in navigator)) return -1;
+  return (await navigator.serviceWorker.getRegistrations()).length;
+});
+check("service worker registers", registrations >= 1, `registrations ${registrations}`);
+
+// 8. Mobile layout has no horizontal overflow.
 const mobile = await context.newPage();
 await mobile.setViewportSize({ width: 390, height: 844 });
-for (const path of ["/", "/practice/", "/tutor/", "/progress/", "/pricing/"]) {
+for (const path of ["/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/"]) {
   await mobile.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
   const overflow = await mobile.evaluate(
     () => document.documentElement.scrollWidth - window.innerWidth,

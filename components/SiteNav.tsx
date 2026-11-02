@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/practice/", label: "Practice" },
+  { href: "/exam/", label: "Exam" },
   { href: "/tutor/", label: "Tutor" },
   { href: "/progress/", label: "Progress" },
   { href: "/pricing/", label: "Pricing" },
@@ -22,7 +23,6 @@ export function SiteNav() {
           >
             B
           </span>
-          <span className="sm:hidden">BAC STE</span>
           <span className="hidden sm:inline">BAC STE Tutor</span>
         </Link>
         <nav aria-label="Main" className="flex items-center gap-0.5 sm:gap-1">
@@ -33,7 +33,7 @@ export function SiteNav() {
                 key={l.href}
                 href={l.href}
                 aria-current={active ? "page" : undefined}
-                className={`rounded-full px-2 py-2 text-[13px] transition-colors sm:px-3 sm:text-sm ${
+                className={`rounded-full px-1.5 py-2 text-[12px] transition-colors sm:px-3 sm:text-sm ${
                   active ? "bg-cv-raised text-cv-text" : "text-cv-text-50 hover:text-cv-text"
                 }`}
               >

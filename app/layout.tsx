@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SiteNav } from "@/components/SiteNav";
+import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 
 export const metadata: Metadata = {
   title: {
@@ -25,6 +26,18 @@ export const metadata: Metadata = {
     title: "BAC STE Tutor",
     description: "Revise maths and English for the 2BAC STE exam with practice that explains.",
   },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/icons/icon-192.png",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "BAC STE",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport: Viewport = {
@@ -44,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <SiteNav />
+        <ServiceWorkerRegistrar />
         <main id="main">{children}</main>
         <footer className="mt-24 border-t border-cv-line">
           <div className="container-page flex flex-col gap-3 py-10 text-sm text-cv-text-50 sm:flex-row sm:items-center sm:justify-between">

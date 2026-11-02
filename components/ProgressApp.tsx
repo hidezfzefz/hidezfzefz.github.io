@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { SUBJECTS, type Subject } from "@/lib/questions";
 import { loadAttempts, resetAttempts, statsFor, type Attempt, type SubjectStats } from "@/lib/progress";
+import { bestExam, loadExams, type ExamResult } from "@/lib/exam";
 
 export function ProgressApp() {
   const [attempts, setAttempts] = useState<Attempt[]>([]);
+  const [exams, setExams] = useState<ExamResult[]>([]);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     setAttempts(loadAttempts());
+    setExams(loadExams());
     setReady(true);
   }, []);
 
@@ -37,6 +40,20 @@ export function ProgressApp() {
           </button>
         )}
       </div>
+
+      {ready && exams.length > 0 && (
+        <div className="card mt-8 flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6">
+          <div>
+            <p className="text-sm text-cv-text-50">Best exam result</p>
+            <p className="mt-1 text-2xl tracking-[-0.03em]">
+              {bestExam(exams)?.correct}/{bestExam(exams)?.total}
+            </p>
+          </div>
+          <Link href="/exam/" className="pill pill-secondary pill-small">
+            Retake the exam
+          </Link>
+        </div>
+      )}
 
       {!ready ? (
         <div className="mt-8 grid gap-6 md:grid-cols-2" aria-hidden="true">

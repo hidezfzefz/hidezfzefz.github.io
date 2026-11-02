@@ -10,9 +10,11 @@ Live: <https://bacste-tutor.netlify.app>
 
 - 24 questions across maths and English (12 each), with explanations.
 - Practice by subject and topic, with session accuracy.
+- Timed exam simulation: 10 mixed questions, 15 minutes, review with explanations.
 - Tutor search over the same revision bank.
-- Progress per subject and per topic, weakest topic first.
+- Progress per subject and per topic, weakest topic first, plus your best exam score.
 - Free tier plus a Premium preview. Progress is stored locally in the browser.
+- Installable PWA with an offline app shell (manifest + service worker).
 - Email waitlist for Premium (Netlify Forms).
 
 Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone; see
@@ -23,7 +25,7 @@ Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone
 ```bash
 npm install
 npm run dev          # http://localhost:3000
-npm test             # 6 unit tests
+npm test             # 17 unit tests
 npm run typecheck
 npm run build        # static export in out/
 ```

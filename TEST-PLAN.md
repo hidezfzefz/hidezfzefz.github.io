@@ -11,9 +11,9 @@ progress aggregation, premium filtering and the practice state machine.
 | --- | --- |
 | Question bank | unique ids; exactly four options; answer index in range; explanation present; every subject has free **and** premium questions |
 | Progress | counts only the selected subject; accuracy rounding; topics ordered weakest first; zeroed empty state |
-| Static export | every route renders its heading; `robots.txt` points at the sitemap; sitemap contains every public route |
+| Static export | every route renders its heading (including `/exam/`); `robots.txt` points at the sitemap; sitemap contains every public route; manifest lists both icons; service worker caches the shell |
 
-Run: `npm test` (14 tests).
+Run: `npm test` (17 tests).
 
 ## End-to-end (Chromium via Playwright)
 
@@ -24,9 +24,11 @@ Run: `npm run build && node tests/e2e.mjs` against `out/`.
 | Home → sample question | choosing an option reveals "Correct"/"Not quite" and an explanation |
 | Practice → answer | four options, feedback appears, "Next question" changes the prompt |
 | Tutor → search "derivative" | at least one matching explanation |
+| Exam → start | ten questions with four options; answering all ten shows a score and a ten-item review |
 | Pricing → demo unlock | premium state appears and persists on `/practice/` |
 | Progress | accuracy is shown after an attempt |
-| Every page at 390px | no horizontal overflow |
+| PWA | manifest is linked and served; service worker registers |
+| Every page at 390px | no horizontal overflow (including `/exam/`) |
 | All pages | no console errors, no page errors, no HTTP ≥ 400 |
 
 ## Browser checks (production)

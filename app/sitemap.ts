@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://bacste-tutor.netlify.app";
-  const routes = ["", "/practice/", "/tutor/", "/progress/", "/pricing/", "/privacy/"];
+  const routes = ["", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/privacy/"];
   return routes.map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),

@@ -1,7 +1,7 @@
 # Test report — BAC STE Tutor v1
 
 Date: 2026-11-02
-Build tested: static export from commit on `master` after the practice-filter fix.
+Build tested: static export from `master` with the exam simulation and PWA shell.
 Live: <https://bacste-tutor.netlify.app>
 
 ## Summary
@@ -9,11 +9,11 @@ Live: <https://bacste-tutor.netlify.app>
 | Suite | Result |
 | --- | --- |
 | TypeScript | `tsc --noEmit` — 0 errors |
-| Production build | `next build` — 10 static routes exported, 0 warnings blocking |
-| Unit tests | **14 passed / 14** |
-| E2E (Chromium) | **15 passed / 15** |
+| Production build | `next build` — 13 static routes exported, 0 warnings blocking |
+| Unit tests | **17 passed / 17** |
+| E2E (Chromium) | **31 passed / 31** |
 | Production browser check | 6 routes, 0 console errors, 0 failed requests |
-| Responsive | 360–1440px checked; no horizontal overflow at 390px on all five pages |
+| Responsive | 360–1440px checked; no horizontal overflow at 390px on all six public pages, including the exam |
 | Dependency audit | `npm audit --omit=dev` — 0 vulnerabilities |
 
 ## Bugs found and fixed during testing
@@ -41,8 +41,17 @@ PASS  tutor returns a matching explanation
 PASS  premium demo unlocks
 PASS  premium state persists
 PASS  progress shows accuracy
+PASS  exam page offers a start
+PASS  exam question 1 has options
+… (questions 2–9)
+PASS  exam question 10 has options
+PASS  exam shows a score and a review
+PASS  manifest is linked
+PASS  manifest is served
+PASS  service worker registers
 PASS  no horizontal overflow at 390px on /
 PASS  no horizontal overflow at 390px on /practice/
+PASS  no horizontal overflow at 390px on /exam/
 PASS  no horizontal overflow at 390px on /tutor/
 PASS  no horizontal overflow at 390px on /progress/
 PASS  no horizontal overflow at 390px on /pricing/
