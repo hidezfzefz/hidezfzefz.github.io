@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PremiumActions } from "@/components/PremiumActions";
+import { WaitlistForm } from "@/components/WaitlistForm";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -82,6 +83,8 @@ export default function PricingPage() {
         Prices are in Moroccan dirham. If you are a student who cannot afford Premium, use
         the free tier — it covers the core questions. No account is required to practise.
       </p>
+
+      <WaitlistForm />
     </div>
   );
 }

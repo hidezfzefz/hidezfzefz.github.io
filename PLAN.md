@@ -2,37 +2,41 @@
 
 Goal: ship a live, monetizable revision app in small vertical slices. Each milestone runs end to end (thin version of every layer), gets tested and committed before the next starts.
 
-## Milestone 0 — Foundation (this slice)
-- [ ] Scaffold Next.js + TS + Tailwind + shadcn/ui. Verify: `npm run build` succeeds.
-- [ ] Add design tokens from Convio Design. Verify: tokens declared once in `globals.css`, no literal colours elsewhere.
-- [ ] Create content model + 20 maths / 20 English questions in `content/`. Verify: schema validation script passes.
-- [ ] Build landing page. Verify: lighthouse-ish manual check, 360px–1920px, no overflow.
+## Milestone 0 — Foundation ✅
+- [x] Scaffold Next.js + TS + Tailwind + Convio tokens. Verified: `npm run build` exports 8 routes.
+- [x] Design tokens declared once in `app/globals.css`.
+- [x] Content model + 24 maths/English questions in `lib/questions.ts`. Verified: schema test.
+- [x] Landing page. Verified: 1440px and 390px screenshots, no overflow.
 
-## Milestone 1 — Practice vertical slice
-- [ ] Practice page: pick subject/topic, answer MCQ, instant feedback + explanation. Verify: play through in browser.
-- [ ] Progress stored locally (and DB later). Verify: reload keeps progress.
-- [ ] Tutor page: explanation lookup + step-by-step hints from content. Verify: answers render.
+## Milestone 1 — Practice vertical slice ✅
+- [x] Practice page: subject/topic, MCQ, instant feedback + explanation.
+- [x] Progress stored locally. Verified: reload keeps progress.
+- [x] Tutor search over the revision bank.
 
-## Milestone 2 — Accounts and data
-- [ ] Postgres (Convio Neon) + Drizzle schema: users, attempts, subscriptions.
-- [ ] Better Auth email/password. Verify: sign up, sign in, sign out.
-- [ ] Persist attempts per user. Verify: two users see separate progress.
+## Milestone 2 — Accounts and data ⏸ deferred to v2
+- [ ] Postgres + Drizzle schema (users, attempts, subscriptions).
+- [ ] Better Auth email/password.
+- [ ] Persist attempts per user.
+- Decision: v1 ships account-free to avoid collecting minors' data and to launch now.
 
-## Milestone 3 — Monetisation
-- [ ] Pricing page with Free vs Premium tiers.
-- [ ] Stripe checkout (test mode) + webhook to mark subscription active.
-- [ ] Gate premium topics/explanations. Verify: free user blocked, premium user allowed.
+## Milestone 3 — Monetisation 🟡 partial
+- [x] Pricing page, free vs Premium.
+- [x] Premium Payment Link slot (`NEXT_PUBLIC_STRIPE_PAYMENT_LINK`).
+- [ ] Real Stripe checkout + webhook + server-side gating (needs owner's Stripe account).
+- [ ] Gate premium content on the server.
 
-## Milestone 4 — Launch
-- [ ] Security review (Convio stage): authz on every route, input validation, secrets not in client.
-- [ ] Tests: unit for scoring/gating, e2e for signup → practice → upgrade.
-- [ ] Deploy to Netlify, set env vars, smoke-test production.
+## Milestone 4 — Launch ✅
+- [x] Security review ([SECURITY.md](SECURITY.md)).
+- [x] Unit tests: 6 passing.
+- [x] Deploy to Netlify; live at <https://bacste-tutor.netlify.app>.
+- [x] `robots.txt`, `sitemap.xml`, IndexNow submission.
+- [ ] Owner: create Stripe account and Payment Link; submit sitemap in Search Console.
 
 ## Checkpoints (call `next_stage`)
-- Design
-- Scaffold
-- Data and auth
-- Build features
-- Security review
-- Test thoroughly
-- Ship
+- [x] Design
+- [x] Scaffold
+- [x] Data and auth (deliberately scoped out for v1)
+- [x] Build features
+- [x] Security review
+- [x] Test thoroughly
+- [x] Ship

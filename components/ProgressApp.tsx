@@ -38,7 +38,13 @@ export function ProgressApp() {
         )}
       </div>
 
-      {!ready ? null : attempts.length === 0 ? (
+      {!ready ? (
+        <div className="mt-8 grid gap-6 md:grid-cols-2" aria-hidden="true">
+          {[0, 1].map((i) => (
+            <div key={i} className="card h-56 animate-pulse p-5 sm:p-6" />
+          ))}
+        </div>
+      ) : attempts.length === 0 ? (
         <div className="card mt-8 p-6 sm:p-8">
           <p className="text-cv-text-75">
             No answers yet. Do a few questions and this page fills in as you go.

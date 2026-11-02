@@ -10,6 +10,21 @@ export const metadata: Metadata = {
   description:
     "Practice maths and English for the Moroccan 2BAC STE baccalaureate with instant feedback, clear explanations and progress tracking.",
   metadataBase: new URL("https://bacste-tutor.netlify.app"),
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_MA",
+    url: "/",
+    siteName: "BAC STE Tutor",
+    title: "BAC STE Tutor — revise maths and English for the 2BAC STE exam",
+    description:
+      "Short maths and English questions with instant feedback and a written explanation for every answer.",
+  },
+  twitter: {
+    card: "summary",
+    title: "BAC STE Tutor",
+    description: "Revise maths and English for the 2BAC STE exam with practice that explains.",
+  },
 };
 
 export const viewport: Viewport = {

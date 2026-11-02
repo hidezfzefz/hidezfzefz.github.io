@@ -32,12 +32,27 @@ export function PracticeApp() {
     [subject],
   );
 
-  const pool = useMemo(() => {
-    const base = QUESTIONS.filter(
+  const basePool = useMemo(() => {
+    return QUESTIONS.filter(
       (q) => q.subject === subject && (topic === "all" || q.topic === topic),
     );
-    return shuffle(base);
   }, [subject, topic]);
+
+  const [order, setOrder] = useState<string[] | null>(null);
+
+  // Shuffle after mount so the server-rendered order and the first client render
+  // match; otherwise React throws a hydration error.
+  useEffect(() => {
+    setOrder(shuffle(basePool).map((q) => q.id));
+    setIndex(0);
+    setSelected(null);
+  }, [basePool]);
+
+  const pool = useMemo(() => {
+    if (!order) return basePool;
+    const byId = new Map(basePool.map((q) => [q.id, q]));
+    return order.map((id) => byId.get(id)).filter((q): q is Question => Boolean(q));
+  }, [order, basePool]);
 
   const current: Question | undefined = pool[index];
 
@@ -46,11 +61,13 @@ export function PracticeApp() {
     setTopic("all");
     setIndex(0);
     setSelected(null);
+    setOrder(null);
   }
   function changeTopic(next: string) {
     setTopic(next);
     setIndex(0);
     setSelected(null);
+    setOrder(null);
   }
   function choose(option: number) {
     if (selected !== null || !current) return;
