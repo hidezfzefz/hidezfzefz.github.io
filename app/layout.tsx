@@ -1,0 +1,44 @@
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import { SiteNav } from "@/components/SiteNav";
+
+export const metadata: Metadata = {
+  title: {
+    default: "BAC STE Tutor — revise maths and English for the 2BAC STE exam",
+    template: "%s — BAC STE Tutor",
+  },
+  description:
+    "Practice maths and English for the Moroccan 2BAC STE baccalaureate with instant feedback, clear explanations and progress tracking.",
+  metadataBase: new URL("https://bacste-tutor.netlify.app"),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-cv-primary focus:px-4 focus:py-2 focus:text-black"
+        >
+          Skip to content
+        </a>
+        <SiteNav />
+        <main id="main">{children}</main>
+        <footer className="mt-24 border-t border-cv-line">
+          <div className="container-page flex flex-col gap-3 py-10 text-sm text-cv-text-50 sm:flex-row sm:items-center sm:justify-between">
+            <p>BAC STE Tutor — independent revision tool for 2BAC STE students.</p>
+            <p>
+              Built to be useful, not to replace your teacher or the official syllabus.
+            </p>
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}
