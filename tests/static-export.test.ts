@@ -1,0 +1,37 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { describe, expect, it } from "vitest";
+
+const out = join(process.cwd(), "out");
+const hasBuild = existsSync(join(out, "index.html"));
+
+describe.skipIf(!hasBuild)("static export", () => {
+  const routes: [string, string][] = [
+    ["index.html", "Pass the 2BAC STE"],
+    ["practice/index.html", "Practice, one question at a time."],
+    ["tutor/index.html", "Ask the revision tutor."],
+    ["progress/index.html", "Your progress."],
+    ["pricing/index.html", "Simple pricing."],
+    ["thanks/index.html", "You are on the list."],
+  ];
+
+  for (const [file, marker] of routes) {
+    it(`renders ${file} with its heading`, () => {
+      const html = readFileSync(join(out, file), "utf8");
+      expect(html).toContain(marker);
+      expect(html).toContain("BAC STE Tutor");
+    });
+  }
+
+  it("ships robots.txt pointing at the sitemap", () => {
+    const robots = readFileSync(join(out, "robots.txt"), "utf8");
+    expect(robots).toContain("Sitemap: https://bacste-tutor.netlify.app/sitemap.xml");
+  });
+
+  it("ships a sitemap with every public route", () => {
+    const map = readFileSync(join(out, "sitemap.xml"), "utf8");
+    for (const path of ["/practice/", "/tutor/", "/progress/", "/pricing/"]) {
+      expect(map).toContain(`https://bacste-tutor.netlify.app${path}`);
+    }
+  });
+});
