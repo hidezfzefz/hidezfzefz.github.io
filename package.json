@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "node tests/e2e.mjs"
   },
   "dependencies": {
     "next": "^16.4.4",
@@ -19,6 +20,7 @@
     "@types/node": "22.15.0",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
+    "playwright-core": "^1.55.0",
     "tailwindcss": "4.3.4",
     "typescript": "5.9.3",
     "vitest": "^3.2.4"

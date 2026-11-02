@@ -28,15 +28,25 @@ export function PracticeApp() {
   }, []);
 
   const topics = useMemo(
-    () => Array.from(new Set(QUESTIONS.filter((q) => q.subject === subject).map((q) => q.topic))),
-    [subject],
+    () =>
+      Array.from(
+        new Set(
+          QUESTIONS.filter((q) => q.subject === subject && (premium || !q.premium)).map(
+            (q) => q.topic,
+          ),
+        ),
+      ),
+    [subject, premium],
   );
 
   const basePool = useMemo(() => {
     return QUESTIONS.filter(
-      (q) => q.subject === subject && (topic === "all" || q.topic === topic),
+      (q) =>
+        q.subject === subject &&
+        (topic === "all" || q.topic === topic) &&
+        (premium || !q.premium),
     );
-  }, [subject, topic]);
+  }, [subject, topic, premium]);
 
   const [order, setOrder] = useState<string[] | null>(null);
 
