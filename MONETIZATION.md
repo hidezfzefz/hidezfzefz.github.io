@@ -1,6 +1,6 @@
 # Monetisation plan — BAC STE Tutor
 
-The product is live at <https://bacste-tutor.netlify.app>. This file is the shortest path
+The product is live at <https://hidezfzefz.github.io>. This file is the shortest path
 from "live" to "first dirham", plus the fallbacks if subscriptions do not fit.
 
 ## 1. Connect payments (the one missing account)

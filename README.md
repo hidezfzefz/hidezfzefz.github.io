@@ -4,7 +4,7 @@ A small, fast revision web app for Moroccan **2BAC STE** students: maths and Eng
 questions with instant feedback, a written explanation for every answer, a searchable
 tutor, and progress tracking.
 
-Live: <https://bacste-tutor.netlify.app>
+Live: <https://hidezfzefz.github.io>
 
 ## What is in v1
 
@@ -32,15 +32,18 @@ npm run build        # static export in out/
 
 ## Deploy
 
-The site is a static Next.js export. `netlify.toml` describes the build, and
-`public/_headers` sets the security headers.
+The site is a static Next.js export. Pushing `master` triggers
+`.github/workflows/deploy.yml`, which builds `out/` and publishes it to **GitHub Pages**
+at <https://hidezfzefz.github.io>.
 
 ```bash
 npm run build
-python3 /tmp/opencode/deploy_bacste.py   # or: npx netlify deploy --prod --dir=out
+# GitHub Actions deploys on push; no manual upload needed.
 ```
 
-The host is Netlify site `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`).
+A Netlify mirror is configured in `netlify.toml` (site `bacste-tutor`,
+`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`). Netlify was the first host; its free deploy
+credits ran out on 2026-11-03, so GitHub Pages is the primary host until credits return.
 
 ## Environment
 
@@ -52,9 +55,9 @@ No secret keys belong in this static site. Anything prefixed `NEXT_PUBLIC_` is p
 
 ## Rollback
 
-Netlify keeps every deploy. Open **Deploys** in the Netlify dashboard and click
-**Publish deploy** on the last good one, or re-run the deploy script from the matching
-commit.
+GitHub Pages keeps the last successful workflow artifact. Re-run an older run from the
+**Actions** tab, or revert the commit and push. On Netlify, open **Deploys** and click
+**Publish deploy** on the last good one.
 
 ## Content
 

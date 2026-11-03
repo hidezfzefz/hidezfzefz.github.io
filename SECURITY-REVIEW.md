@@ -1,7 +1,7 @@
 # Security review — BAC STE Tutor
 
 Date: 2026-11-02
-Deployment: <https://bacste-tutor.netlify.app>
+Deployment: <https://hidezfzefz.github.io>
 Scope: the owner's own static Next.js site and its Netlify configuration.
 
 ## Attack surface

@@ -30,7 +30,7 @@ Goal: ship a live, monetizable revision app in small vertical slices. Each miles
 ## Milestone 4 — Launch ✅
 - [x] Security review ([SECURITY.md](SECURITY.md)).
 - [x] Unit tests: 6 passing.
-- [x] Deploy to Netlify; live at <https://bacste-tutor.netlify.app>.
+- [x] Deploy to Netlify; live at <https://hidezfzefz.github.io>.
 - [x] `robots.txt`, `sitemap.xml`, IndexNow submission.
 - [ ] Owner: create Stripe account and Payment Link; submit sitemap in Search Console.
 

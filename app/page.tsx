@@ -1,5 +1,10 @@
 import Link from "next/link";
 import { SampleQuestion } from "@/components/SampleQuestion";
+import { GUIDES } from "@/lib/guides";
+
+const featuredGuides = GUIDES.filter((g) =>
+  ["limits", "derivatives", "tenses", "conditionals"].includes(g.slug),
+);
 
 const subjects = [
   {
@@ -50,6 +55,38 @@ export default function HomePage() {
                 Practise {s.label.toLowerCase()}
               </Link>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-page py-10">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-2xl tracking-[-0.02em]">Read the rule, then practise it</h2>
+            <p className="mt-1 max-w-lg text-[15px] text-cv-text-75">
+              Free study guides for the topics that decide the exam, each linked to practice
+              on the same topic.
+            </p>
+          </div>
+          <Link href="/guides/" className="pill pill-secondary pill-small">
+            All guides
+          </Link>
+        </div>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {featuredGuides.map((g) => (
+            <Link
+              key={g.slug}
+              href={`/guides/${g.slug}/`}
+              className="card flex flex-col p-5 transition-colors hover:bg-cv-raised"
+            >
+              <p className="text-xs text-cv-text-50">
+                {g.subject === "maths" ? "Maths" : "English"} · {g.topic}
+              </p>
+              <p className="mt-1.5 text-lg tracking-[-0.02em]">{g.title}</p>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-cv-text-75">
+                {g.description}
+              </p>
+            </Link>
           ))}
         </div>
       </section>

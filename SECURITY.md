@@ -1,7 +1,7 @@
 # Security review — BAC STE Tutor v1
 
 Date: 2026-11-02
-Scope: the static Next.js export deployed to Netlify (`bacste-tutor.netlify.app`).
+Scope: the static Next.js export deployed to Netlify (`hidezfzefz.github.io`).
 
 ## What the app does with data
 

@@ -1,7 +1,7 @@
 # Launch checklist — BAC STE Tutor v1
 
 Reviewed: 2026-11-02
-Live: <https://bacste-tutor.netlify.app>
+Live: <https://hidezfzefz.github.io>
 Host: Netlify site `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`)
 
 ## Deploy
@@ -76,6 +76,6 @@ Host: Netlify site `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`)
    `NEXT_PUBLIC_STRIPE_PAYMENT_LINK`, rebuild, redeploy. Until then the Premium button
    says it is a demo.
 2. **Google Search Console**: verify the domain and submit `/sitemap.xml`.
-3. **Uptime monitor**: point a free monitor at `https://bacste-tutor.netlify.app/`.
+3. **Uptime monitor**: point a free monitor at `https://hidezfzefz.github.io/`.
 4. **Distribution**: one link from the existing 2BAC maths site and the LingoEnglish
    README, then one honest post in two student communities.

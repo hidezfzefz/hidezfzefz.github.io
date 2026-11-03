@@ -2,7 +2,7 @@
 
 Date: 2026-11-02
 Build tested: static export from `master` with the exam simulation and PWA shell.
-Live: <https://bacste-tutor.netlify.app>
+Live: <https://hidezfzefz.github.io>
 
 ## Summary
 

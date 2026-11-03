@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
   description:
     "Practice maths and English for the Moroccan 2BAC STE baccalaureate with instant feedback, clear explanations and progress tracking.",
-  metadataBase: new URL("https://bacste-tutor.netlify.app"),
+  metadataBase: new URL("https://hidezfzefz.github.io"),
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -63,6 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="container-page flex flex-col gap-3 py-10 text-sm text-cv-text-50 sm:flex-row sm:items-center sm:justify-between">
             <p>BAC STE Tutor — independent revision tool for 2BAC STE students.</p>
             <p className="flex gap-4">
+              <a href="/guides/" className="hover:text-cv-text">
+                Guides
+              </a>
               <a href="/privacy/" className="hover:text-cv-text">
                 Privacy
               </a>

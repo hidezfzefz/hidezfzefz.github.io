@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { QUESTIONS, SUBJECTS, type Question, type Subject } from "@/lib/questions";
+import { GUIDES } from "@/lib/guides";
 import { isPremium, recordAttempt } from "@/lib/progress";
 
 function shuffle<T>(items: T[]): T[] {
@@ -25,6 +26,17 @@ export function PracticeApp() {
 
   useEffect(() => {
     setPremiumState(isPremium());
+  }, []);
+
+  // Allow guides to deep-link into a topic: /practice/?topic=Derivatives
+  useEffect(() => {
+    const topicParam = new URLSearchParams(window.location.search).get("topic");
+    if (!topicParam) return;
+    const match = QUESTIONS.find((q) => q.topic === topicParam);
+    if (match) {
+      setSubject(match.subject);
+      setTopic(match.topic);
+    }
   }, []);
 
   const topics = useMemo(
@@ -65,6 +77,7 @@ export function PracticeApp() {
   }, [order, basePool]);
 
   const current: Question | undefined = pool[index];
+  const topicGuide = current ? GUIDES.find((g) => g.topic === current.topic) : undefined;
 
   function changeSubject(next: Subject) {
     setSubject(next);
@@ -247,6 +260,14 @@ export function PracticeApp() {
             <Link href="/progress/" className="pill pill-secondary pill-small mt-4">
               View progress
             </Link>
+            {topicGuide && (
+              <Link
+                href={`/guides/${topicGuide.slug}/`}
+                className="pill pill-secondary pill-small mt-2"
+              >
+                Read the {topicGuide.title.toLowerCase()} guide
+              </Link>
+            )}
           </div>
         </aside>
       </div>

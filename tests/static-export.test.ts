@@ -26,13 +26,13 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships robots.txt pointing at the sitemap", () => {
     const robots = readFileSync(join(out, "robots.txt"), "utf8");
-    expect(robots).toContain("Sitemap: https://bacste-tutor.netlify.app/sitemap.xml");
+    expect(robots).toContain("Sitemap: https://hidezfzefz.github.io/sitemap.xml");
   });
 
   it("ships a sitemap with every public route", () => {
     const map = readFileSync(join(out, "sitemap.xml"), "utf8");
-    for (const path of ["/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/"]) {
-      expect(map).toContain(`https://bacste-tutor.netlify.app${path}`);
+    for (const path of ["/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/limits/"]) {
+      expect(map).toContain(`https://hidezfzefz.github.io${path}`);
     }
   });
 
@@ -45,7 +45,25 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships the service worker and its shell", () => {
     const sw = readFileSync(join(out, "sw.js"), "utf8");
-    expect(sw).toContain("bacste-v1");
+    expect(sw).toContain("bacste-v2");
     expect(sw).toContain("/exam/");
+    expect(sw).toContain("/guides/limits/");
+  });
+
+  it("renders every guide with key points", () => {
+    for (const slug of [
+      "limits",
+      "derivatives",
+      "integrals",
+      "complex-numbers",
+      "tenses",
+      "conditionals",
+      "passive-voice",
+      "reported-speech",
+    ]) {
+      const html = readFileSync(join(out, "guides", slug, "index.html"), "utf8");
+      expect(html, slug).toContain("Key points");
+      expect(html, slug).toContain("Practise");
+    }
   });
 });

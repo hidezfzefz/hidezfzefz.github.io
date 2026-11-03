@@ -62,7 +62,23 @@ check(
   (await page.locator("article").first().innerText()).toLowerCase().includes("derivative"),
 );
 
-// 4. Premium demo unlock persists across pages.
+// 4. Guides: read a guide, then jump into practice on the same topic.
+await page.goto(`${BASE}/guides/`, { waitUntil: "networkidle" });
+check("guides index lists eight guides", (await page.locator("article").count()) === 8);
+await page.goto(`${BASE}/guides/limits/`, { waitUntil: "networkidle" });
+check(
+  "guide renders its sections and key points",
+  (await page.getByRole("heading", { name: "Key points" }).count()) === 1 &&
+    (await page.locator("main").innerText()).includes("sin(x)/x"),
+);
+await page.getByRole("link", { name: /Practise limits and continuity/i }).click();
+await page.waitForLoadState("networkidle");
+check(
+  "guide deep-links into its practice topic",
+  (await page.locator("section").first().innerText()).includes("Limits and continuity"),
+);
+
+// 5. Premium demo unlock persists across pages.
 await page.goto(`${BASE}/pricing/`, { waitUntil: "networkidle" });
 await page.getByRole("button", { name: "Preview Premium (demo)" }).click();
 check(
@@ -112,7 +128,7 @@ check("service worker registers", registrations >= 1, `registrations ${registrat
 // 8. Mobile layout has no horizontal overflow.
 const mobile = await context.newPage();
 await mobile.setViewportSize({ width: 390, height: 844 });
-for (const path of ["/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/"]) {
+for (const path of ["/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/", "/guides/limits/"]) {
   await mobile.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
   const overflow = await mobile.evaluate(
     () => document.documentElement.scrollWidth - window.innerWidth,
