@@ -8,7 +8,7 @@ Live: <https://hidezfzefz.github.io>
 
 ## What is in v1
 
-- 40 questions across maths and English, each with a written explanation.
+- 62 questions across maths and English, each with a written explanation.
 - Practice by subject and topic, with session accuracy.
 - Timed exam simulation: 10 mixed questions, 15 minutes, review with explanations.
 - Tutor search over the same revision bank.

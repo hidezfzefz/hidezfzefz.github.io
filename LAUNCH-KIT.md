@@ -66,7 +66,7 @@ teacher offer are translated, and they can start practising from there.
 
 **Title:** I built a free 2BAC STE revision site (maths + English) — feedback welcome
 
-> I made a small revision site for Moroccan 2BAC STE students: 40 maths and English
+> I made a small revision site for Moroccan 2BAC STE students: 62 maths and English
 > questions with a written explanation for every answer, a 15-minute mixed exam, eight
 > study guides and a printable worksheet builder.
 >

@@ -17,6 +17,16 @@ describe("question bank", () => {
     }
   });
 
+  it("does not repeat a prompt", () => {
+    const normalize = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const seen = new Map<string, string>();
+    for (const q of QUESTIONS) {
+      const key = normalize(q.prompt);
+      expect(seen.has(key), `${q.id} repeats ${seen.get(key)}`).toBe(false);
+      seen.set(key, q.id);
+    }
+  });
+
   it("offers free and premium questions for every subject", () => {
     for (const s of SUBJECTS) {
       const pool = QUESTIONS.filter((q) => q.subject === s.id);
