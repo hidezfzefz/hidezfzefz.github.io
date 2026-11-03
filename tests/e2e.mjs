@@ -72,7 +72,7 @@ check(
     (await page.locator("main").innerText()).includes("sin(x)/x"),
 );
 await page.getByRole("link", { name: /Practise limits and continuity/i }).click();
-await page.waitForLoadState("networkidle");
+await page.locator("section").first().getByText("Limits and continuity").waitFor();
 check(
   "guide deep-links into its practice topic",
   (await page.locator("section").first().innerText()).includes("Limits and continuity"),
@@ -92,7 +92,20 @@ check("premium state persists", (await page.getByText("Premium active").count())
 await page.goto(`${BASE}/progress/`, { waitUntil: "networkidle" });
 check("progress shows accuracy", (await page.locator("main").innerText()).includes("accuracy"));
 
-// 6. Exam simulation: answer all ten, finish, and see the review.
+// 6. Worksheet builder: generates questions and can hide the answer key.
+await page.goto(`${BASE}/worksheets/`, { waitUntil: "networkidle" });
+check("worksheet builds twelve questions", (await page.locator("li.print-question").count()) === 12);
+check("worksheet shows the answer key", (await page.getByRole("heading", { name: "Answer key" }).count()) === 1);
+await page.getByLabel("Include answer key").uncheck();
+check("answer key can be hidden", (await page.getByRole("heading", { name: "Answer key" }).count()) === 0);
+check("worksheet has a print button", (await page.getByRole("button", { name: "Print worksheet" }).count()) === 1);
+
+// 7. Schools page offers the pilot by email.
+await page.goto(`${BASE}/schools/`, { waitUntil: "networkidle" });
+const pilot = page.getByRole("link", { name: "Request the pilot" });
+check("schools page has a pilot email link", (await pilot.getAttribute("href"))?.startsWith("mailto:"));
+
+// 8. Exam simulation: answer all ten, finish, and see the review.
 await page.goto(`${BASE}/exam/`, { waitUntil: "networkidle" });
 check("exam page offers a start", (await page.getByRole("button", { name: "Start exam" }).count()) === 1);
 await page.getByRole("button", { name: "Start exam" }).click();
@@ -128,7 +141,7 @@ check("service worker registers", registrations >= 1, `registrations ${registrat
 // 8. Mobile layout has no horizontal overflow.
 const mobile = await context.newPage();
 await mobile.setViewportSize({ width: 390, height: 844 });
-for (const path of ["/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/", "/guides/limits/"]) {
+for (const path of ["/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/", "/guides/limits/", "/worksheets/", "/schools/"]) {
   await mobile.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
   const overflow = await mobile.evaluate(
     () => document.documentElement.scrollWidth - window.innerWidth,

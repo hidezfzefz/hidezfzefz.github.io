@@ -67,10 +67,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/guides/" className="hover:text-cv-text">
                 Guides
               </a>
+              <a href="/worksheets/" className="hover:text-cv-text">
+                Worksheets
+              </a>
+              <a href="/schools/" className="hover:text-cv-text">
+                For teachers
+              </a>
               <a href="/privacy/" className="hover:text-cv-text">
                 Privacy
               </a>
-              <span>Built to be useful, not to replace your teacher.</span>
+              <span className="hidden sm:inline">
+                Built to be useful, not to replace your teacher.
+              </span>
             </p>
           </div>
         </footer>

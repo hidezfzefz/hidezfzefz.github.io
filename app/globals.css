@@ -169,3 +169,43 @@
     }
   }
 }
+
+@media print {
+  @page {
+    margin: 16mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    margin: 0 !important;
+  }
+  .container-page {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .print-sheet {
+    border: 0 !important;
+    background: #fff !important;
+    padding: 0 !important;
+  }
+  .print-sheet * {
+    color: #000 !important;
+    background: transparent !important;
+    border-color: #999 !important;
+  }
+  .print-question {
+    break-inside: avoid;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+}

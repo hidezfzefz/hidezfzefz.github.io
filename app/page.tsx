@@ -94,6 +94,26 @@ export default function HomePage() {
       <section className="container-page py-10">
         <div className="card flex flex-col items-start justify-between gap-5 p-6 sm:flex-row sm:items-center sm:p-8">
           <div>
+            <h2 className="text-2xl tracking-[-0.02em]">Teaching a 2BAC STE class?</h2>
+            <p className="mt-1 max-w-lg text-[15px] text-cv-text-75">
+              Generate a printable worksheet with an answer key in seconds, or run the timed
+              exam as a low-stakes class activity. No student accounts.
+            </p>
+          </div>
+          <div className="flex shrink-0 gap-3">
+            <Link href="/worksheets/" className="pill pill-primary">
+              Make a worksheet
+            </Link>
+            <Link href="/schools/" className="pill pill-secondary">
+              Class pilot
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-page py-10">
+        <div className="card flex flex-col items-start justify-between gap-5 p-6 sm:flex-row sm:items-center sm:p-8">
+          <div>
             <h2 className="text-2xl tracking-[-0.02em]">Ready for a timed run?</h2>
             <p className="mt-1 max-w-lg text-[15px] text-cv-text-75">
               Ten mixed questions, fifteen minutes, feedback only at the end. It shows what

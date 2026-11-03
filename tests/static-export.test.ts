@@ -13,6 +13,8 @@ describe.skipIf(!hasBuild)("static export", () => {
     ["tutor/index.html", "Ask the revision tutor."],
     ["progress/index.html", "Your progress."],
     ["pricing/index.html", "Simple pricing."],
+    ["worksheets/index.html", "Printable worksheets."],
+    ["schools/index.html", "Bring it to your class."],
     ["thanks/index.html", "You are on the list."],
   ];
 
@@ -31,7 +33,7 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships a sitemap with every public route", () => {
     const map = readFileSync(join(out, "sitemap.xml"), "utf8");
-    for (const path of ["/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/limits/"]) {
+    for (const path of ["/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/limits/", "/worksheets/", "/schools/"]) {
       expect(map).toContain(`https://hidezfzefz.github.io${path}`);
     }
   });
@@ -45,7 +47,7 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships the service worker and its shell", () => {
     const sw = readFileSync(join(out, "sw.js"), "utf8");
-    expect(sw).toContain("bacste-v2");
+    expect(sw).toContain("bacste-v3");
     expect(sw).toContain("/exam/");
     expect(sw).toContain("/guides/limits/");
   });

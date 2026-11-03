@@ -1,0 +1,202 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { QUESTIONS, SUBJECTS, type Question, type Subject } from "@/lib/questions";
+
+function shuffle<T>(items: T[]): T[] {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+export function WorksheetApp() {
+  const [subject, setSubject] = useState<Subject>("maths");
+  const [topic, setTopic] = useState("all");
+  const [count, setCount] = useState(12);
+  const [includeKey, setIncludeKey] = useState(true);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [ready, setReady] = useState(false);
+  const [version, setVersion] = useState(0);
+
+  const topics = Array.from(
+    new Set(QUESTIONS.filter((q) => q.subject === subject).map((q) => q.topic)),
+  );
+
+  useEffect(() => {
+    const pool = QUESTIONS.filter(
+      (q) => q.subject === subject && (topic === "all" || q.topic === topic),
+    );
+    setQuestions(shuffle(pool).slice(0, count));
+    setReady(true);
+  }, [subject, topic, count, version]);
+
+  function changeSubject(next: Subject) {
+    setSubject(next);
+    setTopic("all");
+  }
+
+  return (
+    <div className="container-page py-10 sm:py-14">
+      <div className="no-print">
+        <h1 className="text-[clamp(2rem,4vw,2.75rem)] leading-[1.1] tracking-[-0.04em]">
+          Printable worksheets.
+        </h1>
+        <p className="mt-2 max-w-2xl text-cv-text-75">
+          Build a clean practice sheet in seconds, with or without the answer key. Print it
+          for a class, a study group, or a phone-free revision session. Free to use.
+        </p>
+
+        <div className="card mt-7 p-5 sm:p-6">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <label className="grid gap-1.5 text-sm text-cv-text-50">
+              Subject
+              <select
+                className="input"
+                value={subject}
+                onChange={(e) => changeSubject(e.target.value as Subject)}
+              >
+                {SUBJECTS.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="grid gap-1.5 text-sm text-cv-text-50">
+              Topic
+              <select
+                className="input"
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+              >
+                <option value="all">All topics</option>
+                {topics.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="grid gap-1.5 text-sm text-cv-text-50">
+              Questions
+              <select
+                className="input"
+                value={count}
+                onChange={(e) => setCount(Number(e.target.value))}
+              >
+                {[8, 12, 16, 20].map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex items-center gap-2.5 self-end pb-3 text-sm text-cv-text-75">
+              <input
+                type="checkbox"
+                checked={includeKey}
+                onChange={(e) => setIncludeKey(e.target.checked)}
+                className="size-4 accent-[#f4f4f5]"
+              />
+              Include answer key
+            </label>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-3">
+            <button onClick={() => setVersion((v) => v + 1)} className="pill pill-secondary">
+              Shuffle again
+            </button>
+            <button onClick={() => window.print()} className="pill pill-primary">
+              Print worksheet
+            </button>
+            <Link href="/schools/" className="pill pill-secondary">
+              Using this with a class?
+            </Link>
+            <span className="self-center text-xs text-cv-text-50">
+              {questions.length} question{questions.length === 1 ? "" : "s"} on this sheet
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <section className="print-sheet card mt-8 p-6 sm:p-10" aria-live="polite">
+        <div className="flex flex-wrap items-start justify-between gap-4 border-b border-cv-line pb-4">
+          <div>
+            <p className="text-sm text-cv-text-50">BAC STE Tutor · 2BAC STE</p>
+            <h2 className="mt-1 text-2xl tracking-[-0.02em]">
+              {subject === "maths" ? "Maths" : "English"} practice
+            </h2>
+            <p className="mt-1 text-sm text-cv-text-50">
+              {topic === "all" ? "Mixed topics" : topic}
+            </p>
+          </div>
+          <div className="text-sm text-cv-text-50">
+            <p>Name: ______________________</p>
+            <p className="mt-2">Date: _______________________</p>
+          </div>
+        </div>
+
+        {!ready ? (
+          <p className="mt-6 text-sm text-cv-text-50">Building the sheet…</p>
+        ) : questions.length === 0 ? (
+          <p className="mt-6 text-sm text-cv-text-50">
+            No questions in this topic yet. Choose another topic.
+          </p>
+        ) : (
+          <>
+            <p className="mt-4 text-sm text-cv-text-50">
+              Circle one answer for each question. Take your time; the explanations are on the
+              practice page.
+            </p>
+
+            <ol className="mt-6 grid gap-6">
+              {questions.map((q, i) => (
+                <li key={q.id} className="print-question">
+                  <p className="text-[15px] leading-snug">
+                    <span className="mr-2 text-cv-text-50">{i + 1}.</span>
+                    {q.prompt}
+                  </p>
+                  <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
+                    {q.options.map((opt, j) => (
+                      <p key={j} className="text-[15px] text-cv-text-75">
+                        <span className="mr-2 font-mono text-cv-text-50">
+                          {String.fromCharCode(65 + j)}
+                        </span>
+                        {opt}
+                      </p>
+                    ))}
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            {includeKey && (
+              <div className="mt-10 border-t border-cv-line pt-5">
+                <h3 className="text-lg tracking-[-0.02em]">Answer key</h3>
+                <div className="mt-3 grid grid-cols-4 gap-x-4 gap-y-2 text-sm text-cv-text-75 sm:grid-cols-6">
+                  {questions.map((q, i) => (
+                    <p key={q.id}>
+                      <span className="text-cv-text-50">{i + 1}.</span>{" "}
+                      {String.fromCharCode(65 + q.answer)}
+                    </p>
+                  ))}
+                </div>
+                <p className="mt-4 text-xs text-cv-text-50">
+                  Worked explanations: https://hidezfzefz.github.io/guides · Practice:
+                  https://hidezfzefz.github.io/practice
+                </p>
+              </div>
+            )}
+          </>
+        )}
+      </section>
+    </div>
+  );
+}

@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tutor/",
     "/progress/",
     "/guides/",
+    "/worksheets/",
+    "/schools/",
     "/pricing/",
     "/privacy/",
   ];
