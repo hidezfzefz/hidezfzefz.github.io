@@ -63,5 +63,15 @@ GitHub Pages keeps the last successful workflow artifact. Re-run an older run fr
 
 Questions live in [`lib/questions.ts`](lib/questions.ts). Each entry has `subject`,
 `topic`, `difficulty`, `premium`, `prompt`, four `options`, the `answer` index and an
-`explanation`. Add questions there and the practice, tutor and progress screens pick them
-up automatically.
+`explanation`. Add questions there and the practice, tutor, worksheet and progress screens
+pick them up automatically.
+
+Guides live in [`lib/guides.ts`](lib/guides.ts). Each has a slug, sections, a formula slot,
+key points and the practice topic it links to.
+
+## Launch and money
+
+- [`LAUNCH-KIT.md`](LAUNCH-KIT.md): ready-to-post messages in French, Moroccan Arabic and
+  English, a seven-day plan and the teacher email.
+- [`MONETIZATION.md`](MONETIZATION.md): the Stripe steps and the revenue model.
+- [`LAUNCH-CHECKLIST.md`](LAUNCH-CHECKLIST.md): what is done and what still needs the owner.
