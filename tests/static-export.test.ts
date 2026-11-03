@@ -17,6 +17,7 @@ describe.skipIf(!hasBuild)("static export", () => {
     ["schools/index.html", "Bring it to your class."],
     ["thanks/index.html", "You are on the list."],
     ["fr/index.html", "Réussis ton 2BAC STE"],
+    ["fr/ecoles/index.html", "Utilisez-le avec votre classe."],
     ["ar/index.html", "راجع للباك 2BAC STE"],
   ];
 
@@ -35,7 +36,7 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships a sitemap with every public route", () => {
     const map = readFileSync(join(out, "sitemap.xml"), "utf8");
-    for (const path of ["/fr/", "/ar/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/limits/", "/worksheets/", "/schools/"]) {
+    for (const path of ["/fr/", "/fr/ecoles/", "/ar/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/limits/", "/worksheets/", "/schools/"]) {
       expect(map).toContain(`https://hidezfzefz.github.io${path}`);
     }
   });

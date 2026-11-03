@@ -100,7 +100,7 @@ Check the subreddit rules before posting; some ban self-promotion outside a week
 >
 > Bien cordialement,
 > [nom]
-> https://hidezfzefz.github.io/schools/
+> https://hidezfzefz.github.io/fr/ecoles/
 
 ## Seven-day plan
 

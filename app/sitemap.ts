@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/progress/",
     "/guides/",
     "/worksheets/",
-    "/schools/",
     "/pricing/",
     "/privacy/",
   ];
@@ -41,5 +40,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...pages, ...guides];
+  const schoolsLanguages = {
+    en: `${base}/schools/`,
+    fr: `${base}/fr/ecoles/`,
+    "x-default": `${base}/schools/`,
+  };
+
+  const schools: MetadataRoute.Sitemap = ["/schools/", "/fr/ecoles/"].map((path) => ({
+    url: `${base}${path}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+    alternates: { languages: schoolsLanguages },
+  }));
+
+  return [...pages, ...guides, ...schools];
 }

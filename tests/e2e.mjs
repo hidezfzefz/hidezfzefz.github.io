@@ -122,6 +122,13 @@ check(
 );
 await page.goto(`${BASE}/ar/`, { waitUntil: "networkidle" });
 check("Arabic page is right to left", (await page.locator('[dir="rtl"]').count()) >= 1);
+await page.goto(`${BASE}/fr/ecoles/`, { waitUntil: "networkidle" });
+check(
+  "French teacher page has a pilot email link",
+  (await page
+    .getByRole("link", { name: "Demander l’essai" })
+    .getAttribute("href"))?.startsWith("mailto:"),
+);
 await page.goto(`${BASE}/practice/?subject=english`, { waitUntil: "networkidle" });
 await page.getByRole("tab", { name: "English" }).waitFor();
 check(
@@ -165,7 +172,7 @@ check("service worker registers", registrations >= 1, `registrations ${registrat
 // 8. Mobile layout has no horizontal overflow.
 const mobile = await context.newPage();
 await mobile.setViewportSize({ width: 390, height: 844 });
-for (const path of ["/", "/fr/", "/ar/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/", "/guides/limits/", "/worksheets/", "/schools/"]) {
+for (const path of ["/", "/fr/", "/fr/ecoles/", "/ar/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/", "/guides/limits/", "/worksheets/", "/schools/"]) {
   await mobile.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
   const overflow = await mobile.evaluate(
     () => document.documentElement.scrollWidth - window.innerWidth,

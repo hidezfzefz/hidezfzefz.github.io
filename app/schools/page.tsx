@@ -5,7 +5,10 @@ export const metadata: Metadata = {
   title: "For teachers",
   description:
     "Use BAC STE Tutor with your class: free printable worksheets, exam simulations and a 30-day class pilot for 2BAC STE maths and English teachers.",
-  alternates: { canonical: "/schools/" },
+  alternates: {
+    canonical: "/schools/",
+    languages: { en: "/schools/", fr: "/fr/ecoles/", "x-default": "/schools/" },
+  },
 };
 
 const EMAIL = "bilal6087xx@gmail.com";
@@ -121,6 +124,14 @@ export default function SchoolsPage() {
           ))}
         </div>
       </section>
+
+      <p className="mt-8 text-sm text-cv-text-50">
+        Version française :{" "}
+        <Link href="/fr/ecoles/" hrefLang="fr" className="underline hover:text-cv-text">
+          Pour les enseignants
+        </Link>
+        .
+      </p>
     </div>
   );
 }

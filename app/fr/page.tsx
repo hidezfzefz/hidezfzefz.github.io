@@ -177,7 +177,7 @@ export default function FrenchHome() {
             <Link href="/worksheets/" className="pill pill-primary">
               Créer une feuille
             </Link>
-            <Link href="/schools/" className="pill pill-secondary">
+            <Link href="/fr/ecoles/" className="pill pill-secondary">
               Essai classe
             </Link>
           </div>
