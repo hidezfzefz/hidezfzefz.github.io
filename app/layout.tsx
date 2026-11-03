@@ -12,7 +12,10 @@ export const metadata: Metadata = {
     "Practice maths and English for the Moroccan 2BAC STE baccalaureate with instant feedback, clear explanations and progress tracking.",
   metadataBase: new URL("https://hidezfzefz.github.io"),
   referrer: "strict-origin-when-cross-origin",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { en: "/", fr: "/fr/", ar: "/ar/", "x-default": "/" },
+  },
   openGraph: {
     type: "website",
     locale: "en_MA",
@@ -72,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="mt-24 border-t border-cv-line">
           <div className="container-page flex flex-col gap-3 py-10 text-sm text-cv-text-50 sm:flex-row sm:items-center sm:justify-between">
             <p>BAC STE Tutor — independent revision tool for 2BAC STE students.</p>
-            <p className="flex gap-4">
+            <p className="flex flex-wrap gap-x-4 gap-y-2">
               <a href="/guides/" className="hover:text-cv-text">
                 Guides
               </a>
@@ -84,6 +87,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </a>
               <a href="/privacy/" className="hover:text-cv-text">
                 Privacy
+              </a>
+              <a href="/fr/" hrefLang="fr" className="hover:text-cv-text">
+                Français
+              </a>
+              <a href="/ar/" hrefLang="ar" className="hover:text-cv-text">
+                العربية
               </a>
               <span className="hidden sm:inline">
                 Built to be useful, not to replace your teacher.

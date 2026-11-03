@@ -16,6 +16,8 @@ describe.skipIf(!hasBuild)("static export", () => {
     ["worksheets/index.html", "Printable worksheets."],
     ["schools/index.html", "Bring it to your class."],
     ["thanks/index.html", "You are on the list."],
+    ["fr/index.html", "Réussis ton 2BAC STE"],
+    ["ar/index.html", "راجع للباك 2BAC STE"],
   ];
 
   for (const [file, marker] of routes) {
@@ -33,7 +35,7 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships a sitemap with every public route", () => {
     const map = readFileSync(join(out, "sitemap.xml"), "utf8");
-    for (const path of ["/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/limits/", "/worksheets/", "/schools/"]) {
+    for (const path of ["/fr/", "/ar/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/limits/", "/worksheets/", "/schools/"]) {
       expect(map).toContain(`https://hidezfzefz.github.io${path}`);
     }
   });
@@ -47,7 +49,7 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships the service worker and its shell", () => {
     const sw = readFileSync(join(out, "sw.js"), "utf8");
-    expect(sw).toContain("bacste-v4");
+    expect(sw).toContain("bacste-v5");
     expect(sw).toContain("/exam/");
     expect(sw).toContain("/guides/limits/");
   });
@@ -60,7 +62,17 @@ describe.skipIf(!hasBuild)("static export", () => {
     expect(html).toContain('name="twitter:card" content="summary_large_image"');
   });
 
-  it("renders every guide with key points", () => {    for (const slug of [
+  it("links the French and Arabic versions with hreflang", () => {
+    const html = readFileSync(join(out, "index.html"), "utf8");
+    expect(html).toMatch(/hreflang="fr"/i);
+    expect(html).toMatch(/hreflang="ar"/i);
+    const ar = readFileSync(join(out, "ar", "index.html"), "utf8");
+    expect(ar).toContain('dir="rtl"');
+    expect(ar).toContain('lang="ar"');
+  });
+
+  it("renders every guide with key points", () => {
+    for (const slug of [
       "limits",
       "derivatives",
       "integrals",

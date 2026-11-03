@@ -7,6 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://hidezfzefz.github.io";
   const routes = [
     "",
+    "/fr/",
+    "/ar/",
     "/practice/",
     "/exam/",
     "/tutor/",
@@ -18,11 +20,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy/",
   ];
 
+  const languages = {
+    en: `${base}/`,
+    fr: `${base}/fr/`,
+    ar: `${base}/ar/`,
+  };
+
   const pages: MetadataRoute.Sitemap = routes.map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
     changeFrequency: path === "" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : path === "/guides/" ? 0.8 : 0.7,
+    priority: path === "" ? 1 : ["/fr/", "/ar/", "/guides/"].includes(path) ? 0.8 : 0.7,
+    ...(["", "/fr/", "/ar/"].includes(path) ? { alternates: { languages } } : {}),
   }));
 
   const guides: MetadataRoute.Sitemap = GUIDES.map((g) => ({

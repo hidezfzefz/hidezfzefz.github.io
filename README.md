@@ -8,14 +8,18 @@ Live: <https://hidezfzefz.github.io>
 
 ## What is in v1
 
-- 24 questions across maths and English (12 each), with explanations.
+- 40 questions across maths and English, each with a written explanation.
 - Practice by subject and topic, with session accuracy.
 - Timed exam simulation: 10 mixed questions, 15 minutes, review with explanations.
 - Tutor search over the same revision bank.
 - Progress per subject and per topic, weakest topic first, plus your best exam score.
+- Eight study guides with formulas, key points and practice deep links.
+- Printable worksheet builder with an optional answer key.
+- French (`/fr/`) and Arabic (`/ar/`) entry pages with hreflang.
 - Free tier plus a Premium preview. Progress is stored locally in the browser.
 - Installable PWA with an offline app shell (manifest + service worker).
 - Email link to join the Premium waitlist (no form backend).
+- Teacher page with a free 30-day class pilot offer.
 
 Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone; see
 [PLAN.md](PLAN.md) and [MONETIZATION.md](MONETIZATION.md).
@@ -25,7 +29,7 @@ Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone
 ```bash
 npm install
 npm run dev          # http://localhost:3000
-npm test             # 17 unit tests
+npm test             # 24 unit tests
 npm run typecheck
 npm run build        # static export in out/
 ```

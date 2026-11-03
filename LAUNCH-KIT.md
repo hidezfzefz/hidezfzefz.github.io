@@ -15,11 +15,23 @@ timed exam, printable worksheets and study guides. No account, no ads.
 **Français:** Révision gratuite pour le 2BAC STE : maths et anglais corrigés, examen
 chronométré, fiches imprimables et guides. Sans compte et sans publicité.
 
+## Pick the right link
+
+| Post language | Link |
+| --- | --- |
+| English | <https://hidezfzefz.github.io> |
+| French | <https://hidezfzefz.github.io/fr/> |
+| Arabic | <https://hidezfzefz.github.io/ar/> |
+
+The practice questions and explanations are in English for now. Send French and Arabic
+readers to the page in their language anyway: the intro, the pricing answer and the
+teacher offer are translated, and they can start practising from there.
+
 ## WhatsApp — short version
 
 > Salut 👋 J'ai fait un site gratuit pour réviser le 2BAC STE : maths + anglais, questions
 > corrigées, examen chronométré et fiches. Sans compte et sans pub. Si ça peut aider
-> quelqu'un en STE : https://hidezfzefz.github.io
+> quelqu'un en STE : https://hidezfzefz.github.io/fr/
 
 ## Facebook group post — French
 
@@ -33,7 +45,7 @@ chronométré, fiches imprimables et guides. Sans compte et sans publicité.
 > Pas de compte, pas de publicité, pas de données personnelles demandées. Le but est
 > simplement que ce soit utile pendant la révision.
 >
-> Lien : https://hidezfzefz.github.io
+> Lien : https://hidezfzefz.github.io/fr/
 >
 > Si un sujet manque ou si quelque chose ne marche pas, dites-le-moi : je corrige.
 
@@ -46,7 +58,7 @@ chronométré, fiches imprimables et guides. Sans compte et sans publicité.
 >
 > بلا تسجيل، بلا إعلانات، وبلا ما نطلب منك معلومات شخصية.
 >
-> الرابط: https://hidezfzefz.github.io
+> الرابط: https://hidezfzefz.github.io/ar/
 >
 > إذا شي حد فـ STE يقدر يستافد، صيفط ليه الرابط. وإذا لقيتو شي حاجة ناقصة، خبروني.
 

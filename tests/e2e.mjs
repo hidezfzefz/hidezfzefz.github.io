@@ -110,7 +110,26 @@ await page.goto(`${BASE}/schools/`, { waitUntil: "networkidle" });
 const pilot = page.getByRole("link", { name: "Request the pilot" });
 check("schools page has a pilot email link", (await pilot.getAttribute("href"))?.startsWith("mailto:"));
 
-// 8. Exam simulation: answer all ten, finish, and see the review.
+// 8. French and Arabic landing pages, and the subject deep link they use.
+await page.goto(`${BASE}/fr/`, { waitUntil: "networkidle" });
+check(
+  "French page is in French",
+  (await page.locator("main").innerText()).includes("Réussis ton 2BAC STE"),
+);
+check(
+  "French page links to the Arabic version",
+  (await page.locator('a[href="/ar/"]').count()) >= 1,
+);
+await page.goto(`${BASE}/ar/`, { waitUntil: "networkidle" });
+check("Arabic page is right to left", (await page.locator('[dir="rtl"]').count()) >= 1);
+await page.goto(`${BASE}/practice/?subject=english`, { waitUntil: "networkidle" });
+await page.getByRole("tab", { name: "English" }).waitFor();
+check(
+  "subject deep link selects English",
+  (await page.getByRole("tab", { name: "English" }).getAttribute("aria-selected")) === "true",
+);
+
+// 9. Exam simulation: answer all ten, finish, and see the review.
 await page.goto(`${BASE}/exam/`, { waitUntil: "networkidle" });
 check("exam page offers a start", (await page.getByRole("button", { name: "Start exam" }).count()) === 1);
 await page.getByRole("button", { name: "Start exam" }).click();
@@ -146,7 +165,7 @@ check("service worker registers", registrations >= 1, `registrations ${registrat
 // 8. Mobile layout has no horizontal overflow.
 const mobile = await context.newPage();
 await mobile.setViewportSize({ width: 390, height: 844 });
-for (const path of ["/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/", "/guides/limits/", "/worksheets/", "/schools/"]) {
+for (const path of ["/", "/fr/", "/ar/", "/practice/", "/exam/", "/tutor/", "/progress/", "/pricing/", "/guides/", "/guides/limits/", "/worksheets/", "/schools/"]) {
   await mobile.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
   const overflow = await mobile.evaluate(
     () => document.documentElement.scrollWidth - window.innerWidth,

@@ -29,13 +29,22 @@ export function PracticeApp() {
   }, []);
 
   // Allow guides to deep-link into a topic: /practice/?topic=Derivatives
+  // and landing pages into a subject: /practice/?subject=english
   useEffect(() => {
-    const topicParam = new URLSearchParams(window.location.search).get("topic");
-    if (!topicParam) return;
-    const match = QUESTIONS.find((q) => q.topic === topicParam);
-    if (match) {
-      setSubject(match.subject);
-      setTopic(match.topic);
+    const params = new URLSearchParams(window.location.search);
+    const topicParam = params.get("topic");
+    if (topicParam) {
+      const match = QUESTIONS.find((q) => q.topic === topicParam);
+      if (match) {
+        setSubject(match.subject);
+        setTopic(match.topic);
+        return;
+      }
+    }
+    const subjectParam = params.get("subject");
+    if (subjectParam === "maths" || subjectParam === "english") {
+      setSubject(subjectParam);
+      setTopic("all");
     }
   }, []);
 

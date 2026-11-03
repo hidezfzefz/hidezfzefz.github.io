@@ -2,9 +2,11 @@
    Keeps the app shell available offline and serves hashed assets from cache.
    Bump CACHE when the shell changes. */
 
-const CACHE = "bacste-v4";
+const CACHE = "bacste-v5";
 const SHELL = [
   "/",
+  "/fr/",
+  "/ar/",
   "/practice/",
   "/exam/",
   "/tutor/",
@@ -12,7 +14,8 @@ const SHELL = [
   "/guides/",
   "/guides/limits/",
   "/worksheets/",
-  "/schools/",  "/guides/derivatives/",
+  "/schools/",
+  "/guides/derivatives/",
   "/guides/integrals/",
   "/guides/complex-numbers/",
   "/guides/tenses/",
