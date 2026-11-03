@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description:
     "Practice maths and English for the Moroccan 2BAC STE baccalaureate with instant feedback, clear explanations and progress tracking.",
   metadataBase: new URL("https://hidezfzefz.github.io"),
+  referrer: "strict-origin-when-cross-origin",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

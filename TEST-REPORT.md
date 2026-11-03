@@ -75,5 +75,4 @@ Weight: ~0.17 MB over ~19 requests.
 
 - Firefox/WebKit and axe/Lighthouse are not installed in this environment; run them in CI.
 - Premium is a demo until Stripe and server-side gating land (see `SECURITY-REVIEW.md`).
-- The email waitlist form is submitted to Netlify Forms; no submission was created during
-  testing to avoid polluting the owner's list.
+- The waitlist is a `mailto:` link, so no submission was created during testing.

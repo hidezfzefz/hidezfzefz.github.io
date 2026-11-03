@@ -24,8 +24,9 @@ export default function PrivacyPage() {
           <h2 className="text-lg tracking-[-0.02em] text-cv-text">What we receive</h2>
           <p className="mt-2">
             Nothing by default. There are no accounts, cookies, analytics or third-party
-            scripts. If you choose to join the Premium waitlist, we receive the email address
-            you type. It is used once, to tell you when Premium opens, and nothing else.
+            scripts. If you choose to join the Premium waitlist, your email app opens a message
+            to the owner. We receive only what you send, use it once to tell you when Premium
+            opens, and nothing else.
           </p>
         </section>
 

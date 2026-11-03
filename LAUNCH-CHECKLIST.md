@@ -41,7 +41,7 @@ Host: Netlify site `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`)
 | Item | Status | Evidence |
 | --- | --- | --- |
 | Transactional mail | **N/A** | No mail sent by the app |
-| Waitlist delivery | **Partial** | Netlify Forms stores submissions; owner checks the Netlify dashboard |
+| Waitlist delivery | **Done** | Pricing page opens a prefilled email to the owner; nothing is stored |
 
 ## Legal and privacy
 

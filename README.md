@@ -15,7 +15,7 @@ Live: <https://hidezfzefz.github.io>
 - Progress per subject and per topic, weakest topic first, plus your best exam score.
 - Free tier plus a Premium preview. Progress is stored locally in the browser.
 - Installable PWA with an offline app shell (manifest + service worker).
-- Email waitlist for Premium (Netlify Forms).
+- Email link to join the Premium waitlist (no form backend).
 
 Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone; see
 [PLAN.md](PLAN.md) and [MONETIZATION.md](MONETIZATION.md).
