@@ -14,7 +14,8 @@ Live: <https://hidezfzefz.github.io>
 - Tutor search over the same revision bank.
 - Progress per subject and per topic, weakest topic first, plus your best exam score.
 - Eight study guides with formulas, key points and practice deep links.
-- Printable worksheet builder with an optional answer key.
+- Printable worksheet builder with an optional answer key, a balanced all-topics mix,
+  a custom sheet title, and French headers.
 - French (`/fr/`) and Arabic (`/ar/`) entry pages with hreflang.
 - French mode for maths: an EN/FR toggle on practice, exam and worksheets translates
   maths prompts and explanations. English exercises stay in English, because the English
@@ -32,7 +33,7 @@ Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone
 ```bash
 npm install
 npm run dev          # http://localhost:3000
-npm test             # 32 unit tests
+npm test             # 38 unit tests
 npm run typecheck
 npm run build        # static export in out/
 ```

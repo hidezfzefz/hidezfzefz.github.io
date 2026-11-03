@@ -148,6 +148,16 @@ check("progress shows accuracy", (await page.locator("main").innerText()).includ
 // 6. Worksheet builder: generates questions and can hide the answer key.
 await page.goto(`${BASE}/worksheets/`, { waitUntil: "networkidle" });
 check("worksheet builds twelve questions", (await page.locator("li.print-question").count()) === 12);
+await page.getByLabel("Sheet title (optional)").fill("Contrôle — Limites");
+check(
+  "a custom sheet title is printed",
+  (await page.getByRole("heading", { name: "Contrôle — Limites" }).count()) === 1,
+);
+await page.getByLabel("Question mix").selectOption("balanced");
+check(
+  "balanced mix still fills the sheet",
+  (await page.locator("li.print-question").count()) === 12,
+);
 check("worksheet shows the answer key", (await page.getByRole("heading", { name: "Answer key" }).count()) === 1);
 await page.getByLabel("Include answer key").uncheck();
 check("answer key can be hidden", (await page.getByRole("heading", { name: "Answer key" }).count()) === 0);

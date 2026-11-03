@@ -5,20 +5,14 @@ import Link from "next/link";
 import { QUESTIONS, SUBJECTS, type Question, type Subject } from "@/lib/questions";
 import { loadLang, localizeQuestion, saveLang, topicLabel, tr, type Lang } from "@/lib/lang";
 import { LangToggle } from "@/components/LangToggle";
-
-function shuffle<T>(items: T[]): T[] {
-  const a = [...items];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+import { pickQuestions, type WorksheetMix } from "@/lib/worksheet";
 
 export function WorksheetApp() {
   const [subject, setSubject] = useState<Subject>("maths");
   const [topic, setTopic] = useState("all");
   const [count, setCount] = useState(12);
+  const [mix, setMix] = useState<WorksheetMix>("random");
+  const [title, setTitle] = useState("");
   const [includeKey, setIncludeKey] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [ready, setReady] = useState(false);
@@ -42,9 +36,9 @@ export function WorksheetApp() {
     const pool = QUESTIONS.filter(
       (q) => q.subject === subject && (topic === "all" || q.topic === topic),
     );
-    setQuestions(shuffle(pool).slice(0, count));
+    setQuestions(pickQuestions(pool, count, mix));
     setReady(true);
-  }, [subject, topic, count, version]);
+  }, [subject, topic, count, mix, version]);
 
   function changeSubject(next: Subject) {
     setSubject(next);
@@ -116,6 +110,32 @@ export function WorksheetApp() {
               </select>
             </label>
 
+            <label className="grid gap-1.5 text-sm text-cv-text-50">
+              {tr(lang, "Question mix", "Mélange")}
+              <select
+                className="input"
+                value={mix}
+                onChange={(e) => setMix(e.target.value as WorksheetMix)}
+              >
+                <option value="random">{tr(lang, "Random", "Aléatoire")}</option>
+                <option value="balanced">
+                  {tr(lang, "Balanced across topics", "Équilibré (tous les chapitres)")}
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <label className="grid gap-1.5 text-sm text-cv-text-50">
+              {tr(lang, "Sheet title (optional)", "Titre de la fiche (facultatif)")}
+              <input
+                className="input"
+                value={title}
+                maxLength={60}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder={tr(lang, "Maths practice", "Exercices de maths")}
+              />
+            </label>
             <label className="flex items-center gap-2.5 self-end pb-3 text-sm text-cv-text-75">
               <input
                 type="checkbox"
@@ -134,7 +154,10 @@ export function WorksheetApp() {
             <button onClick={() => window.print()} className="pill pill-primary">
               {tr(lang, "Print worksheet", "Imprimer la fiche")}
             </button>
-            <Link href="/schools/" className="pill pill-secondary">
+            <Link
+              href={lang === "fr" ? "/fr/ecoles/" : "/schools/"}
+              className="pill pill-secondary"
+            >
               {tr(lang, "Using this with a class?", "Vous l’utilisez en classe ?")}
             </Link>
             <span className="self-center text-xs text-cv-text-50">
@@ -153,9 +176,11 @@ export function WorksheetApp() {
           <div>
             <p className="text-sm text-cv-text-50">BAC STE Tutor · 2BAC STE</p>
             <h2 className="mt-1 text-2xl tracking-[-0.02em]">
-              {subject === "maths"
-                ? tr(lang, "Maths practice", "Exercices de maths")
-                : tr(lang, "English practice", "Exercices d’anglais")}
+              {title.trim()
+                ? title.trim()
+                : subject === "maths"
+                  ? tr(lang, "Maths practice", "Exercices de maths")
+                  : tr(lang, "English practice", "Exercices d’anglais")}
             </h2>
             <p className="mt-1 text-sm text-cv-text-50">
               {topic === "all"
@@ -165,6 +190,7 @@ export function WorksheetApp() {
           </div>
           <div className="text-sm text-cv-text-50">
             <p>{tr(lang, "Name:", "Nom :")} ______________________</p>
+            <p className="mt-2">{tr(lang, "Class:", "Classe :")} _____________________</p>
             <p className="mt-2">{tr(lang, "Date:", "Date :")} _______________________</p>
           </div>
         </div>
