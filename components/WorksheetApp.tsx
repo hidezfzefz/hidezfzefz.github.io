@@ -25,6 +25,23 @@ export function WorksheetApp() {
 
   useEffect(() => {
     setLang(loadLang());
+
+    // A teacher can share a configured sheet: /worksheets/?mix=balanced&count=20&title=…
+    const params = new URLSearchParams(window.location.search);
+    const nextCount = Number(params.get("count"));
+    if ([8, 12, 16, 20].includes(nextCount)) setCount(nextCount);
+    const nextMix = params.get("mix");
+    if (nextMix === "balanced" || nextMix === "random") setMix(nextMix);
+    const nextTitle = params.get("title");
+    if (nextTitle) setTitle(nextTitle.slice(0, 60));
+    const nextSubject = params.get("subject");
+    if (nextSubject === "maths" || nextSubject === "english") {
+      setSubject(nextSubject);
+      const nextTopic = params.get("topic");
+      if (nextTopic && QUESTIONS.some((q) => q.subject === nextSubject && q.topic === nextTopic)) {
+        setTopic(nextTopic);
+      }
+    }
   }, []);
 
   function changeLang(next: Lang) {

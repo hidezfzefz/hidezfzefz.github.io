@@ -79,6 +79,12 @@ export default function SchoolsPage() {
           <Link href="/worksheets/" className="pill pill-secondary">
             Try the worksheet builder
           </Link>
+          <Link
+            href="/worksheets/?mix=balanced&count=20&title=Entry%20diagnostic"
+            className="pill pill-secondary"
+          >
+            See a 20-question diagnostic
+          </Link>
         </div>
         <p className="mt-3 text-xs text-cv-text-50">
           Opens your email app with a short message. No form, no account.

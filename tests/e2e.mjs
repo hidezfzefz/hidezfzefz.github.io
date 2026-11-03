@@ -162,6 +162,23 @@ check("worksheet shows the answer key", (await page.getByRole("heading", { name:
 await page.getByLabel("Include answer key").uncheck();
 check("answer key can be hidden", (await page.getByRole("heading", { name: "Answer key" }).count()) === 0);
 check("worksheet has a print button", (await page.getByRole("button", { name: "Print worksheet" }).count()) === 1);
+await page.goto(
+  `${BASE}/worksheets/?lang=fr&subject=maths&mix=balanced&count=20&title=Diagnostic`,
+  { waitUntil: "networkidle" },
+);
+check(
+  "a shared worksheet link keeps its twenty questions",
+  (await page.locator("li.print-question").count()) === 20,
+);
+check(
+  "a shared worksheet link keeps its title",
+  (await page.getByRole("heading", { name: "Diagnostic" }).count()) === 1,
+);
+check(
+  "a shared worksheet link opens in French",
+  (await page.getByLabel("Mélange").inputValue()) === "balanced" &&
+    (await page.locator("main").innerText()).includes("Nom :"),
+);
 
 // 7. Schools page offers the pilot by email.
 await page.goto(`${BASE}/schools/`, { waitUntil: "networkidle" });

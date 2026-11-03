@@ -108,6 +108,12 @@ export default function FrenchSchoolsPage() {
           <Link href="/worksheets/?lang=fr" className="pill pill-secondary">
             Essayer le générateur
           </Link>
+          <Link
+            href="/worksheets/?lang=fr&subject=maths&mix=balanced&count=20&title=Diagnostic%20d%E2%80%99entr%C3%A9e"
+            className="pill pill-secondary"
+          >
+            Voir un diagnostic de 20 questions
+          </Link>
         </div>
         <p className="mt-3 text-xs text-cv-text-50">
           Ouvre votre application e-mail avec un message court. Pas de formulaire, pas de

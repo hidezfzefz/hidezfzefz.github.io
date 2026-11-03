@@ -15,7 +15,7 @@ Live: <https://hidezfzefz.github.io>
 - Progress per subject and per topic, weakest topic first, plus your best exam score.
 - Eight study guides with formulas, key points and practice deep links.
 - Printable worksheet builder with an optional answer key, a balanced all-topics mix,
-  a custom sheet title, and French headers.
+  a custom sheet title, French headers, and shareable links that keep a teacher's settings.
 - French (`/fr/`) and Arabic (`/ar/`) entry pages with hreflang.
 - French mode for maths: an EN/FR toggle on practice, exam and worksheets translates
   maths prompts and explanations. English exercises stay in English, because the English
