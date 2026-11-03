@@ -18,7 +18,13 @@ export const metadata: Metadata = {
     url: "/ar/",
     title: "مراجعة 2BAC STE — رياضيات وإنجليزية مع التصحيح",
     description: "أسئلة مصححة، امتحان مؤقت وملخصات للطباعة. مجاني وبلا تسجيل.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "BAC STE Tutor" }],
+    images: [{ url: "/og/ar.png", width: 1200, height: 630, alt: "BAC STE Tutor — مراجعة 2BAC STE" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "مراجعة 2BAC STE — رياضيات وإنجليزية مع التصحيح",
+    description: "أسئلة مصححة، امتحان مؤقت وملخصات للطباعة. مجاني.",
+    images: ["/og/ar.png"],
   },
 };
 

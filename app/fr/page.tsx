@@ -19,7 +19,13 @@ export const metadata: Metadata = {
     title: "Révision 2BAC STE — maths et anglais corrigés",
     description:
       "Questions corrigées, examen chronométré et fiches à imprimer pour le bac marocain. Gratuit, sans compte.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "BAC STE Tutor" }],
+    images: [{ url: "/og/fr.png", width: 1200, height: 630, alt: "BAC STE Tutor — révision 2BAC STE" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Révision 2BAC STE — maths et anglais corrigés",
+    description: "Questions corrigées, examen chronométré et fiches à imprimer. Gratuit.",
+    images: ["/og/fr.png"],
   },
 };
 

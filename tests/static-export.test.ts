@@ -63,6 +63,18 @@ describe.skipIf(!hasBuild)("static export", () => {
     expect(html).toContain('name="twitter:card" content="summary_large_image"');
   });
 
+  it("gives each guide, French and Arabic page its own preview image", () => {
+    for (const name of ["limits", "conditionals"]) {
+      expect(existsSync(join(out, "og", `${name}.png`))).toBe(true);
+      const html = readFileSync(join(out, "guides", name, "index.html"), "utf8");
+      expect(html).toContain(`https://hidezfzefz.github.io/og/${name}.png`);
+    }
+    expect(existsSync(join(out, "og", "fr.png"))).toBe(true);
+    expect(existsSync(join(out, "og", "ar.png"))).toBe(true);
+    expect(readFileSync(join(out, "fr", "index.html"), "utf8")).toContain("/og/fr.png");
+    expect(readFileSync(join(out, "ar", "index.html"), "utf8")).toContain("/og/ar.png");
+  });
+
   it("links the French and Arabic versions with hreflang", () => {
     const html = readFileSync(join(out, "index.html"), "utf8");
     expect(html).toMatch(/hreflang="fr"/i);

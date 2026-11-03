@@ -29,12 +29,18 @@ export async function generateMetadata({
       url: `/guides/${guide.slug}/`,
       images: [
         {
-          url: "/og.png",
+          url: `/og/${guide.slug}.png`,
           width: 1200,
           height: 630,
-          alt: "BAC STE Tutor — practice that explains",
+          alt: `${guide.title} — free 2BAC STE study guide`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${guide.title} — 2BAC STE guide`,
+      description: guide.description,
+      images: [`/og/${guide.slug}.png`],
     },
   };
 }
