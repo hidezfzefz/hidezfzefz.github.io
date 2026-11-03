@@ -15,7 +15,6 @@ describe.skipIf(!hasBuild)("static export", () => {
     ["pricing/index.html", "Simple pricing."],
     ["worksheets/index.html", "Printable worksheets."],
     ["schools/index.html", "Bring it to your class."],
-    ["thanks/index.html", "You are on the list."],
     ["fr/index.html", "Réussis ton 2BAC STE"],
     ["fr/ecoles/index.html", "Utilisez-le avec votre classe."],
     ["ar/index.html", "راجع للباك 2BAC STE"],

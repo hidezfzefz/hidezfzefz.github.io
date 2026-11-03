@@ -24,7 +24,6 @@ const SHELL = [
   "/guides/reported-speech/",
   "/pricing/",
   "/privacy/",
-  "/thanks/",
   "/icon.svg",
   "/og.png",
   "/icons/icon-192.png",
