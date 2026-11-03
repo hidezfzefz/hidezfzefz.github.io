@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GUIDES, guideBySlug } from "@/lib/guides";
+import { ShareButtons } from "@/components/ShareButtons";
 
 export const dynamicParams = false;
 
@@ -26,6 +27,14 @@ export async function generateMetadata({
       title: `${guide.title} — 2BAC STE guide`,
       description: guide.description,
       url: `/guides/${guide.slug}/`,
+      images: [
+        {
+          url: "/og.png",
+          width: 1200,
+          height: 630,
+          alt: "BAC STE Tutor — practice that explains",
+        },
+      ],
     },
   };
 }
@@ -98,6 +107,17 @@ export default async function GuidePage({
           <Link href="/exam/" className="pill pill-secondary">
             Try a timed exam
           </Link>
+        </div>
+        <div className="mt-6 border-t border-cv-line pt-4">
+          <p className="text-sm text-cv-text-50">
+            Useful? Send it to a classmate who is revising the same topic.
+          </p>
+          <div className="mt-3">
+            <ShareButtons
+              path={`/guides/${guide.slug}/`}
+              message={`${guide.title} — a free 2BAC STE guide from BAC STE Tutor.`}
+            />
+          </div>
         </div>
       </section>
 

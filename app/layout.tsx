@@ -21,11 +21,20 @@ export const metadata: Metadata = {
     title: "BAC STE Tutor — revise maths and English for the 2BAC STE exam",
     description:
       "Short maths and English questions with instant feedback and a written explanation for every answer.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "BAC STE Tutor — pass the exam with practice that explains",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "BAC STE Tutor",
     description: "Revise maths and English for the 2BAC STE exam with practice that explains.",
+    images: ["/og.png"],
   },
   icons: {
     icon: [

@@ -71,6 +71,11 @@ check(
   (await page.getByRole("heading", { name: "Key points" }).count()) === 1 &&
     (await page.locator("main").innerText()).includes("sin(x)/x"),
 );
+const share = page.getByRole("link", { name: "Share on WhatsApp" });
+check(
+  "guide has a WhatsApp share link",
+  (await share.getAttribute("href"))?.startsWith("https://wa.me/?text="),
+);
 await page.getByRole("link", { name: /Practise limits and continuity/i }).click();
 await page.locator("section").first().getByText("Limits and continuity").waitFor();
 check(

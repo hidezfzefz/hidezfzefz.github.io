@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { QUESTIONS, type Question } from "@/lib/questions";
 import { bestExam, loadExams, recordExam, type ExamResult } from "@/lib/exam";
+import { ShareButtons } from "@/components/ShareButtons";
 
 const EXAM_SIZE = 10;
 const EXAM_SECONDS = 15 * 60;
@@ -257,6 +258,12 @@ export function ExamApp() {
               <Link href="/progress/" className="pill pill-secondary">
                 View progress
               </Link>
+            </div>
+            <div className="mt-5">
+              <ShareButtons
+                path="/exam/"
+                message={`I scored ${correctCount}/${questions.length} on a 2BAC STE exam simulation. Try it:`}
+              />
             </div>
           </section>
 

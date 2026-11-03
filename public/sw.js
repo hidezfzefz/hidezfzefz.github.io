@@ -2,7 +2,7 @@
    Keeps the app shell available offline and serves hashed assets from cache.
    Bump CACHE when the shell changes. */
 
-const CACHE = "bacste-v3";
+const CACHE = "bacste-v4";
 const SHELL = [
   "/",
   "/practice/",
@@ -23,6 +23,7 @@ const SHELL = [
   "/privacy/",
   "/thanks/",
   "/icon.svg",
+  "/og.png",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/manifest.webmanifest",

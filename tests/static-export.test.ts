@@ -47,13 +47,20 @@ describe.skipIf(!hasBuild)("static export", () => {
 
   it("ships the service worker and its shell", () => {
     const sw = readFileSync(join(out, "sw.js"), "utf8");
-    expect(sw).toContain("bacste-v3");
+    expect(sw).toContain("bacste-v4");
     expect(sw).toContain("/exam/");
     expect(sw).toContain("/guides/limits/");
   });
 
-  it("renders every guide with key points", () => {
-    for (const slug of [
+  it("ships a social preview image and meta tags", () => {
+    expect(existsSync(join(out, "og.png"))).toBe(true);
+    const html = readFileSync(join(out, "index.html"), "utf8");
+    expect(html).toContain('property="og:image"');
+    expect(html).toContain("https://hidezfzefz.github.io/og.png");
+    expect(html).toContain('name="twitter:card" content="summary_large_image"');
+  });
+
+  it("renders every guide with key points", () => {    for (const slug of [
       "limits",
       "derivatives",
       "integrals",
