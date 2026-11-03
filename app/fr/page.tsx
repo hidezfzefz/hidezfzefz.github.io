@@ -33,12 +33,12 @@ const subjects = [
   {
     label: "Maths",
     topics: "Limites · Dérivées · Intégrales · Suites · Nombres complexes · Probabilités",
-    href: "/practice/?subject=maths",
+    href: "/practice/?subject=maths&lang=fr",
   },
   {
     label: "Anglais",
     topics: "Temps · Conditionnels · Voix passive · Modaux · Vocabulaire · Formation des mots",
-    href: "/practice/?subject=english",
+    href: "/practice/?subject=english&lang=fr",
   },
 ];
 
@@ -76,15 +76,15 @@ export default function FrenchHome() {
               pour un cours générique.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/practice/" className="pill pill-primary">
+              <Link href="/practice/?lang=fr" className="pill pill-primary">
                 Commencer à réviser
               </Link>
-              <Link href="/exam/" className="pill pill-secondary">
+              <Link href="/exam/?lang=fr" className="pill pill-secondary">
                 Essayer l’examen
               </Link>
             </div>
             <p className="mt-4 text-sm text-cv-text-50">
-              Gratuit · sans compte · sans publicité · les corrections sont en anglais simple
+              Gratuit · sans compte · sans publicité · maths en français, anglais en VO
             </p>
           </div>
 
@@ -180,7 +180,7 @@ export default function FrenchHome() {
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-3">
-            <Link href="/worksheets/" className="pill pill-primary">
+            <Link href="/worksheets/?lang=fr" className="pill pill-primary">
               Créer une feuille
             </Link>
             <Link href="/fr/ecoles/" className="pill pill-secondary">
@@ -199,7 +199,7 @@ export default function FrenchHome() {
             vente : aucun paiement n’est demandé sur ce site aujourd’hui.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link href="/practice/" className="pill pill-primary">
+            <Link href="/practice/?lang=fr" className="pill pill-primary">
               Réviser gratuitement
             </Link>
             <Link href="/pricing/" className="pill pill-secondary">

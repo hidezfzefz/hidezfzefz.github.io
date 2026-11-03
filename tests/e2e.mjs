@@ -25,7 +25,11 @@ function check(name, condition, extra = "") {
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
 const page = await context.newPage();
 page.on("console", (m) => {
-  if (m.type() === "error") errors.push(m.text());
+  if (m.type() !== "error") return;
+  // Next.js cancels in-flight prefetches on navigation; the browser logs those as
+  // "Failed to load resource" even though nothing is actually broken.
+  if (/Failed to load resource: net::ERR_(FAILED|ABORTED)/.test(m.text())) return;
+  errors.push(m.text());
 });
 page.on("pageerror", (e) => errors.push(String(e)));
 page.on("response", (res) => {
@@ -43,9 +47,12 @@ check(
 
 // 2. Practice: answer one question, see feedback, move on.
 await page.goto(`${BASE}/practice/`, { waitUntil: "networkidle" });
-check("practice lists questions", (await page.locator("button[aria-pressed]").count()) === 4);
+check(
+  "practice lists questions",
+  (await page.locator("section button[aria-pressed]").count()) === 4,
+);
 const q1 = await page.locator("section h2").innerText();
-await page.locator("button[aria-pressed]").first().click();
+await page.locator("section button[aria-pressed]").first().click();
 check(
   "practice shows correct or not-quite feedback",
   /Correct|Not quite/.test(await page.locator("section").innerText()),
@@ -53,6 +60,47 @@ check(
 await page.getByRole("button", { name: "Next question" }).click();
 const q2 = await page.locator("section h2").innerText();
 check("next question changes the prompt", q1 !== q2);
+
+// 2b. French mode: a French maths prompt, kept when moving to the next page.
+await page.goto(`${BASE}/practice/?subject=maths&lang=fr`, { waitUntil: "networkidle" });
+const frPrompt = await page.locator("section h2").innerText();
+check(
+  "French link shows a French maths prompt",
+  /[àâçéèêëîïôùûü]|quel|calculez|résolvez|soit|une suite|on lance|que vaut/i.test(
+    frPrompt,
+  ),
+  frPrompt,
+);
+check(
+  "French mode translates the interface",
+  (await page.locator("main").innerText()).includes("Une question à la fois"),
+);
+await page.locator("section button[aria-pressed]").first().click();
+check(
+  "French mode translates the feedback",
+  /Bonne réponse|Pas tout à fait/.test(await page.locator("section").innerText()),
+);
+await page.getByRole("button", { name: "Question suivante" }).click();
+const frToggle = page.getByRole("group", { name: "Langue" }).getByRole("button", { name: "FR" });
+check(
+  "French mode survives the next question",
+  (await frToggle.getAttribute("aria-pressed")) === "true",
+);
+check(
+  "next French question is still in French",
+  /[àâçéèêëîïôùûü]|quel|calculez|résolvez|soit|une suite|on lance|que vaut/i.test(
+    await page.locator("section h2").innerText(),
+  ),
+);
+await page.goto(`${BASE}/worksheets/?lang=fr`, { waitUntil: "networkidle" });
+check(
+  "French worksheet prints a French heading",
+  (await page.locator("main").innerText()).includes("Exercices de maths"),
+);
+check(
+  "French worksheet keeps a French answer key",
+  (await page.getByRole("heading", { name: "Corrigé" }).count()) === 1,
+);
 
 // 3. Tutor search.
 await page.goto(`${BASE}/tutor/`, { waitUntil: "networkidle" });

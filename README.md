@@ -16,6 +16,9 @@ Live: <https://hidezfzefz.github.io>
 - Eight study guides with formulas, key points and practice deep links.
 - Printable worksheet builder with an optional answer key.
 - French (`/fr/`) and Arabic (`/ar/`) entry pages with hreflang.
+- French mode for maths: an EN/FR toggle on practice, exam and worksheets translates
+  maths prompts and explanations. English exercises stay in English, because the English
+  sentence is the exercise.
 - Free tier plus a Premium preview. Progress is stored locally in the browser.
 - Installable PWA with an offline app shell (manifest + service worker).
 - Email link to join the Premium waitlist (no form backend).
@@ -29,7 +32,7 @@ Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone
 ```bash
 npm install
 npm run dev          # http://localhost:3000
-npm test             # 24 unit tests
+npm test             # 32 unit tests
 npm run typecheck
 npm run build        # static export in out/
 ```
