@@ -105,7 +105,7 @@ export default function FrenchSchoolsPage() {
           <a href={href} className="pill pill-primary">
             Demander l’essai
           </a>
-          <Link href="/worksheets/" className="pill pill-secondary">
+          <Link href="/worksheets/?lang=fr" className="pill pill-secondary">
             Essayer le générateur
           </Link>
         </div>
