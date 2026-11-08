@@ -76,3 +76,18 @@ Weight: ~0.17 MB over ~19 requests.
 - Firefox/WebKit and axe/Lighthouse are not installed in this environment; run them in CI.
 - Premium is a demo until Stripe and server-side gating land (see `SECURITY-REVIEW.md`).
 - The waitlist is a `mailto:` link, so no submission was created during testing.
+
+## Money layer — 2026-11-08
+
+| Suite | Result |
+| --- | --- |
+| Unit tests | **41 passed / 41** (+3 `tests/packs.test.ts`: `formatMad`, pack prices, `NEXT_PUBLIC_*` slots) |
+| TypeScript | `tsc --noEmit` — 0 errors |
+| Production build | `next build` — exports `/shop/` + `/thanks/` + all prior routes |
+| E2E (Chromium, dev server) | **All checks passed** incl. pricing demo unlock (`.first()` for 2 PremiumActions), 390px overflow on all pages, no console/page errors |
+| Browser verified | `/shop/` (3 packs, mailto order), `/pricing/` (one-time packs + 290 MAD annual), `/thanks/` |
+| Security scanners | `npm audit` 0, `semgrep` 0 (see `SECURITY-REVIEW.md`) |
+
+Re-run: `npm test`, `npm run typecheck`, `npm run build`, `BASE_URL=http://localhost:3001 npm run dev` + `BASE_URL=http://localhost:3001 node tests/e2e.mjs`.
+
+Open: real checkout until owner sets Stripe/Ko-fi/PayPal links (demo mailto until then); Firefox/WebKit/axe/Lighthouse still to run in CI.
