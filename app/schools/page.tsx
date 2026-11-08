@@ -102,6 +102,38 @@ export default function SchoolsPage() {
         </p>
       </section>
 
+      <section className="card mt-8 p-6 sm:p-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-2xl tracking-[-0.02em]">Custom topic pack</h2>
+          <span className="pill pill-small border border-cv-line text-cv-text-75">
+            199 MAD / plain
+          </span>
+        </div>
+        <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-cv-text-75">
+          Need questions on the chapter you are teaching right now? Send the topic and we
+          prepare a 10–20 question pack with a clean answer key, delivered by email in 48 hours.
+        </p>
+        <ul className="mt-4 grid gap-2 text-[15px] text-cv-text-75">
+          <li>· New exam-style questions on your topic.</li>
+          <li>· Answer key and mark scheme.</li>
+          <li>· Free tweaks until it fits your class.</li>
+        </ul>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/shop/" className="pill pill-primary">
+            Order a custom pack
+          </Link>
+          <a
+            href={`mailto:${EMAIL}?subject=${encodeURIComponent("Custom topic pack — 199 MAD")}&body=${encodeURIComponent("Hi, subject: maths / English. Topic: Class size:")}`}
+            className="pill pill-secondary"
+          >
+            Email the topic
+          </a>
+        </div>
+        <p className="mt-3 text-xs text-cv-text-50">
+          Class licence (1,500 MAD/class/year) invoiced only after the pilot proves useful.
+        </p>
+      </section>
+
       <section className="mt-8">
         <h2 className="text-xl tracking-[-0.02em]">Questions teachers ask</h2>
         <div className="mt-3 grid gap-3">

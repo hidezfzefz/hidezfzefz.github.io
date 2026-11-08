@@ -79,6 +79,60 @@ export default function PricingPage() {
         </section>
       </div>
 
+      <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <section className="card flex flex-col p-6 sm:p-8">
+          <h2 className="text-xl tracking-[-0.02em]">One-time packs</h2>
+          <p className="mt-1 text-sm text-cv-text-50">Pay once, print and revise offline.</p>
+          <p className="mt-6 text-4xl tracking-[-0.04em]">
+            29–49 MAD <span className="text-base text-cv-text-50">once</span>
+          </p>
+          <ul className="mt-6 grid gap-2.5 text-[15px] text-cv-text-75">
+            <li className="flex gap-2.5">
+              <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-cv-text-50" />
+              Cram Pack PDF — 49 MAD (62 questions + 8 guides)
+            </li>
+            <li className="flex gap-2.5">
+              <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-cv-text-50" />
+              Worksheet bundle — 29 MAD (20 printable sheets)
+            </li>
+            <li className="flex gap-2.5">
+              <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-cv-text-50" />
+              Custom topic pack — 199 MAD (new questions for your class)
+            </li>
+          </ul>
+          <div className="mt-auto pt-8">
+            <a href="/shop/" className="pill pill-primary w-full">
+              Browse packs
+            </a>
+          </div>
+        </section>
+
+        <section className="card flex flex-col p-6 sm:p-8">
+          <h2 className="text-xl tracking-[-0.02em]">Premium annual</h2>
+          <p className="mt-1 text-sm text-cv-text-50">Same as Premium, two months free.</p>
+          <p className="mt-6 text-4xl tracking-[-0.04em]">
+            290 MAD <span className="text-base text-cv-text-50">/ year</span>
+          </p>
+          <ul className="mt-6 grid gap-2.5 text-[15px] text-cv-text-75">
+            <li className="flex gap-2.5">
+              <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-cv-text-50" />
+              Monthly: 39 MAD/month (same benefits)
+            </li>
+            <li className="flex gap-2.5">
+              <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-cv-text-50" />
+              Cancel any time via the checkout link
+            </li>
+            <li className="flex gap-2.5">
+              <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-cv-text-50" />
+              Keep your receipt email as proof
+            </li>
+          </ul>
+          <div className="mt-auto pt-8">
+            <PremiumActions />
+          </div>
+        </section>
+      </div>
+
       <p className="mt-8 max-w-2xl text-sm text-cv-text-50">
         Prices are in Moroccan dirham. If you are a student who cannot afford Premium, use
         the free tier — it covers the core questions. No account is required to practise.
