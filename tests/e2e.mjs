@@ -133,7 +133,7 @@ check(
 
 // 5. Premium demo unlock persists across pages.
 await page.goto(`${BASE}/pricing/`, { waitUntil: "networkidle" });
-await page.getByRole("button", { name: "Preview Premium (demo)" }).click();
+await page.getByRole("button", { name: "Preview Premium (demo)" }).first().click();
 check(
   "premium demo unlocks",
   (await page.getByText("Premium is active on this device").count()) === 1,

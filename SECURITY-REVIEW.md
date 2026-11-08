@@ -8,11 +8,20 @@ Scope: the owner's own static Next.js site and its GitHub Pages hosting.
 
 | Reachable | Notes |
 | --- | --- |
-| Static pages | `/`, `/practice/`, `/exam/`, `/tutor/`, `/progress/`, `/guides/`, `/guides/[slug]/`, `/pricing/`, `/privacy/`, `/thanks/` |
-| Email link | `mailto:` to the owner from the pricing page (nothing stored) |
+| Static pages | `/`, `/practice/`, `/exam/`, `/tutor/`, `/progress/`, `/guides/`, `/guides/[slug]/`, `/pricing/`, `/privacy/`, `/shop/`, `/thanks/`, `/schools/` |
+| Email link | `mailto:` to the owner from pricing/shop/screens (nothing stored) |
 | Browser storage | `bacste.attempts.v1`, `bacste.premium.v1` (local to each visitor) |
+| External payments | Stripe Payment Links / Ko-fi / PayPal.me (hosted checkout; no card data on site). Env slots `NEXT_PUBLIC_STRIPE_*`, `NEXT_PUBLIC_KOFI_URL`, `NEXT_PUBLIC_PAYPAL_ME` (public). |
+| Static PDFs | `public/packs/*.pdf` (generated from `lib/questions.ts` + `lib/guides.ts`; no user input) |
 | Server/API routes | None. Static export; no functions, no database, no auth endpoints. |
-| Secrets | None in the app. Optional public `NEXT_PUBLIC_STRIPE_PAYMENT_LINK`. |
+| Secrets | None in the app. Only public `NEXT_PUBLIC_*`. |
+
+## Re-review 2026-11-08 (money layer)
+
+- Scope: `/shop/`, `/thanks/`, `lib/packs.ts`, `components/PackBuyButton.tsx`, pricing/schools v2, `public/packs/*.pdf`.
+- `npm audit --omit=dev` → **0 vulnerabilities**. `semgrep scan --config auto` → **0 findings**. No `.env` files in repo, no `sk_`/`SECRET` in source, no `dangerouslySetInnerHTML`/`innerHTML`.
+- Prices are display-only; checkout total comes from the Stripe/Ko-fi product (never from client input). No webhook to verify in v1 (no server). Pack fulfilment is by email after payment; `/thanks/` makes no unlock claim.
+- Headers unchanged: Netlify `_headers` sets `nosniff`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`; GitHub Pages host limitation persists (accepted, see #6).
 
 ## Scanners
 

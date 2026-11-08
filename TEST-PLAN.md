@@ -47,6 +47,20 @@ for `/` (1440 and 390) and `/practice/` (1440).
 - Token contrast: `--cv-text` and `--cv-text-75` on black pass AA; `--cv-text-50` is used
   at 14px or larger only.
 
+## Money layer (2026-11-08)
+
+| Journey | Expected |
+| --- | --- |
+| Shop `/shop/` lists 3 packs | titles, 49/29/199 MAD, includes, Buy/Order buttons |
+| Shop Buy (no env) | mailto order link with subject `Order: …`, demo note |
+| Shop Buy (env set) | external Stripe/Ko-fi/PayPal href |
+| Pricing v2 | one-time packs section (29–49 MAD) + annual 290 MAD + Premium monthly |
+| Schools v2 | custom pack 199 MAD CTA + mailto topic link |
+| Thanks `/thanks/` | “Thanks. Your pack is on its way.” + practise/exam links, noindex |
+| Unit: `tests/packs.test.ts` | `formatMad`, 3 packs priced > 0, env keys `NEXT_PUBLIC_*` only |
+
+Run: `npm test`, `npm run build`, `BASE_URL=http://localhost:3001 node tests/e2e.mjs`.
+
 ## Not covered in v1
 
 - Firefox and WebKit runs: only the Chromium binary is available in this environment.
