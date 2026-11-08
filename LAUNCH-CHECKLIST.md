@@ -1,8 +1,8 @@
 # Launch checklist — BAC STE Tutor v1
 
-Reviewed: 2026-11-02
+Reviewed: 2026-11-08 (money layer)
 Live: <https://hidezfzefz.github.io>
-Host: Netlify site `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`)
+Host: GitHub Pages primary (deploy workflow on `master` push); Netlify mirror `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`)
 
 ## Deploy
 
@@ -21,20 +21,20 @@ Host: Netlify site `bacste-tutor` (`c3ce496b-4b0d-46e2-bcaf-a86b33460bd0`)
 
 | Item | Status | Evidence |
 | --- | --- | --- |
-| Unique titles and descriptions | **Done** | Per-route metadata |
+| Unique titles and descriptions | **Done** | Per-route metadata incl. `/shop/`, `/thanks/` (noindex) |
 | Canonical URL and `lang` | **Done** | `alternates.canonical`, `<html lang="en">` |
 | Open Graph / Twitter cards | **Done** | Metadata set; no image yet (text card) |
-| `robots.txt` and sitemap | **Done** | `/robots.txt` and `/sitemap.xml` live |
+| `robots.txt` and sitemap | **Done** | `/robots.txt` and `/sitemap.xml` live (incl. `/shop/`); re-submit after deploy |
 | Search engines notified | **Partial** | IndexNow accepted (202) for Bing/Yandex. Google Search Console needs the owner's account. |
 
 ## Commerce
 
 | Item | Status | Evidence |
 | --- | --- | --- |
-| Live payments | **Open** | Needs the owner's Stripe account; see `MONETIZATION.md` |
-| Prices come from the server | **N/A** | No checkout in v1 |
-| Webhooks verified and idempotent | **N/A** | No webhooks yet |
-| Tax, receipts, returns | **Open** | Stripe handles receipts; add tax settings when the account exists |
+| Live payments | **Open** | Shop/pricing wired (env slots in `lib/packs.ts`); owner creates Stripe + Ko-fi/PayPal links, see `MONETIZATION.md`. No link → mailto order works today. |
+| Prices come from the server | **Done** | Display prices only; checkout total is set in Stripe/Ko-fi product, not client input |
+| Webhooks verified and idempotent | **N/A** | No webhooks in v1; required before server-side gating (v2) |
+| Tax, receipts, returns | **Open** | Stripe handles receipts; add tax settings when the account exists; fulfilment by email |
 
 ## Email
 

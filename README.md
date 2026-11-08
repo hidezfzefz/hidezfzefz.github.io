@@ -24,6 +24,8 @@ Live: <https://hidezfzefz.github.io>
 - Installable PWA with an offline app shell (manifest + service worker).
 - Email link to join the Premium waitlist (no form backend).
 - Teacher page with a free 30-day class pilot offer.
+- Shop (`/shop/`): one-time packs — Cram Pack 49 MAD, Worksheet bundle 29 MAD, Custom topic pack 199 MAD (+ class licence 1,500 MAD/yr). After-checkout `/thanks/`.
+- Pricing v2: free + Premium monthly/annual + one-time packs; schools v2: paid custom-pack CTA.
 
 Accounts, a Postgres database and real Stripe subscriptions are the v2 milestone; see
 [PLAN.md](PLAN.md) and [MONETIZATION.md](MONETIZATION.md).
@@ -58,6 +60,9 @@ credits ran out on 2026-11-03, so GitHub Pages is the primary host until credits
 | Variable | Needed | What it does |
 | --- | --- | --- |
 | `NEXT_PUBLIC_STRIPE_PAYMENT_LINK` | optional | When set at build time, the Premium button opens this Stripe Payment Link instead of the local demo unlock. |
+| `NEXT_PUBLIC_STRIPE_PAYMENT_LINK_ANNUAL` | optional | Annual Premium (290 MAD/yr) link. |
+| `NEXT_PUBLIC_STRIPE_PACK_CRAM` / `..._WORKSHEETS` / `..._CUSTOM` | optional | One-time pack checkout links (see `lib/packs.ts`). |
+| `NEXT_PUBLIC_KOFI_URL` / `NEXT_PUBLIC_PAYPAL_ME` | optional | Fallback checkout for Morocco (no card / no Stripe yet). |
 
 No secret keys belong in this static site. Anything prefixed `NEXT_PUBLIC_` is public.
 
@@ -76,6 +81,9 @@ pick them up automatically.
 
 Guides live in [`lib/guides.ts`](lib/guides.ts). Each has a slug, sections, a formula slot,
 key points and the practice topic it links to.
+
+Packs live in [`lib/packs.ts`](lib/packs.ts). Regenerate PDFs with
+`npx tsx scripts/gen-packs.mjs`, then commit `public/packs/*.pdf`.
 
 ## Launch and money
 
