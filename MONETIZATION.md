@@ -5,16 +5,26 @@ from "live" to "first dirham", plus the fallbacks if subscriptions do not fit.
 
 ## 1. Connect payments (the one missing account)
 
-Stripe is the only blocker that needs the owner. It takes about 10 minutes.
+### Fastest path — Ko-fi / PayPal.me (no Stripe needed, ~5 minutes)
 
-1. Create a Stripe account and finish identity verification.
-2. Create a **Payment Link** for a recurring monthly price (start at **39 MAD/month**; add
-   an annual link at **290 MAD/year** later).
-3. Copy the link, set it as a build variable, rebuild and deploy:
+1. Create a Ko-fi page ([ko-fi.com](https://ko-fi.com)) and add a Shop item for the Cram Pack (49 MAD) + Worksheet bundle (29 MAD). PayPal payouts to Morocco.
+2. Copy your Ko-fi URL, set it as a build variable, rebuild and push:
 
    ```bash
-   NEXT_PUBLIC_STRIPE_PAYMENT_LINK="https://buy.stripe.com/..." npm run build
-   python3 /tmp/opencode/deploy_bacste.py
+   export NEXT_PUBLIC_KOFI_URL="https://ko-fi.com/yourname"
+   npm run build && git push origin master
+   ```
+
+   The Shop "Buy" buttons now open Ko-fi. Email-delivered packs: upload `public/packs/*.pdf` to Ko-fi and Ko-fi emails them after payment. **This is the path to the first sale** — Stripe needs ID verification and a card-accepting business profile; Ko-fi takes PayPal (which students in Morocco already have).
+
+### Full path — Stripe (10 minutes, better for subscriptions)
+
+1. Create a Stripe account and finish identity verification.
+2. Create a **Payment Link** for a recurring monthly price (**39 MAD/month**) + annual (**290 MAD/year**) + one per pack (`NEXT_PUBLIC_STRIPE_PACK_CRAM` 49, `..._WORKSHEETS` 29, `..._CUSTOM` 199).
+3. Copy links — see [`.env.example`](.env.example) — rebuild and push:
+
+   ```bash
+   NEXT_PUBLIC_STRIPE_PAYMENT_LINK="https://buy.stripe.com/..." npm run build && git push origin master
    ```
 
    The Premium button now opens real checkout instead of the demo unlock.
@@ -39,10 +49,16 @@ Do this before charging for content that is currently in the JS bundle.
 | Free | 0 MAD | Core questions, explanations, tutor core, progress |
 | Premium monthly | 39 MAD | Full bank, exam-style walkthroughs, new questions |
 | Premium annual | 290 MAD | Same, two months free |
+| Cram Pack (PDF, one-time) | 49 MAD | 62 questions + explanations + 8 guides, printable (`public/packs/bac-cram-pack.pdf`) |
+| Worksheet bundle (PDF, one-time) | 29 MAD | 20 printable sheets + keys (`public/packs/worksheet-bundle.pdf`) |
+| Custom topic pack | 199 MAD / plain | New exam-style pack for your class, 48h |
 | School licence | 1,500 MAD / class / year | Teacher dashboard, class progress (v3) |
 
 Math: 100 paying students × 39 MAD ≈ **3,900 MAD/month**. 500 ≈ **19,500 MAD/month**.
+One-time first sales: 10 Cram Packs ≈ 490 MAD — reachable with zero cards on file at Ko-fi/PayPal.
 The free tier is the funnel; it is deliberately generous because trust is the bottleneck.
+
+Regenerate packs after adding questions: `npx tsx scripts/gen-packs.mjs`, commit `public/packs/`.
 
 ## 4. Distribution (no ad budget)
 

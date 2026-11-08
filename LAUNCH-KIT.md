@@ -123,6 +123,27 @@ Check the subreddit rules before posting; some ban self-promotion outside a week
 - "Free printable worksheet for your class" — a photo of the printed sheet; teachers share
   this more than students do.
 
+## Selling the packs — copy-paste posts
+
+### Facebook group post — Cram Pack (French, one-time 49 MAD)
+> Bonjour à tous,
+> Je partage le site gratuit de révision 2BAC STE que j'ai construit (maths + anglais corrigés) : https://hidezfzefz.github.io/fr/
+> Pour ceux qui veulent du 100% imprimé et sans écran : j'ai regroupé les 62 questions + 8 guides en un PDF de révision (Cram Pack, 49 MAD, paiement une fois) : https://hidezfzefz.github.io/shop/
+> Pas de compte, pas d'abonnement. Dispo aussi : 20 fiches imprimables + corrigé (29 MAD).
+> Si un sujet manque, dites-le-moi : je l'ajoute.
+
+### WhatsApp short version
+> Salut 👋 le site gratuit 2BAC STE est aussi en PDF imprimable : questions + guides corrigés (49 MAD une fois) : https://hidezfzefz.github.io/shop/
+> Sinon tout reste gratuit sur https://hidezfzefz.github.io/ (sans compte).
+
+### Teacher email — custom topic pack (French)
+**Objet : Pack de exercices sur mesure pour votre classe de 2BAC STE (199 MAD)**
+
+> Bonjour,
+> Je m'appelle [nom], créateur de BAC STE Tutor. En plus de l'outil gratuit, je prépare des packs imprimables sur mesure : 10–20 nouvelles questions style examen + corrigé, livrées par email sous 48h (199 MAD par chapitre).
+> Exemple : "suites, bac blanc" ou "conditionnels" — dites-moi le thème et je vous envoie un extrait gratuit avant tout paiement.
+> Bien cordialement, [nom] — https://hidezfzefz.github.io/fr/ecoles/
+
 ## What not to do
 
 - Do not post the same message in ten groups on the same day. It reads as spam and gets
